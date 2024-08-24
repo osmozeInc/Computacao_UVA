@@ -117,40 +117,21 @@ int main() {
     system("chcp 65001");
     system("cls || clear");
 
-
     printTituloASCII();
     int opcao = Menu();
 
+
     if (opcao == 1)
-    {
-        system("cls || clear");
-        printf("Jogo da Velha\n");
-    }
+        system("cd ..\\Jogos && jogo_da_velha.exe");
     else if (opcao == 2)
-    {
-        system("cls || clear");
-        printf("Jogo da forca\n");
-    }
+        system("cd ..\\Jogos && jogo_da_forca.exe");
     else if (opcao == 3)
-    {
-        system("cls || clear");
-        printf("Jogo de 21\n");
-    }
+        system("cd ..\\Jogos && jogo_de_21.exe");
     else if (opcao == 4)
-    {
-        system("cls || clear");
-        printf("Jogo de dados\n");
-    }
+        system("cd ..\\Jogos && jogo_de_dados.exe");
     else if (opcao == 5)
-    {
-        system("cls || clear");
-        printf("Configurações\n");
-    }
+        system("cd ..\\Jogos && jogo_de_dados.exe");
     else if (opcao == 6)
-    {
-        printf("Saindo...\n");
         return 0;
-    }
-    
-    return 0;
+
 }
