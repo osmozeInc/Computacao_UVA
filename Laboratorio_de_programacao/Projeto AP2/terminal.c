@@ -21,8 +21,8 @@ int main() {
     int sistema = Systema();
 
     if (sistema == 1) {
-        system("cd Proj_windows && gcc main.c");  // apagar após terminar o código
-        system("cd Proj_windows && main.exe");
+        system("cd Proj_windows && gcc main_wind.c");  // apagar após terminar o código
+        system("cd Proj_windows && main_wind.exe");
 
     } else if (sistema == 2) {
         system("cd ~/Proj_linux_mac && ./main");
