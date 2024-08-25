@@ -8,6 +8,7 @@
 
 void JogoDeDados() 
 {
+    system("cls || clear");
     printf("\e[15C|[====================================================================]|  \n");
     printf("\e[15C||                                                                    ]|  \n");
     printf("\e[15C||                              DADOS                                 ]|  \n");
@@ -39,7 +40,7 @@ int Preparacao(int *numero_de_dados, int *aposta)
     ApagarLinha(4);
     
     OpcoesDoJogo(*numero_de_dados, *aposta);
-    printf("faça sua aposta entre 1 e %d\n>>>", *numero_de_dados * 6);
+    printf("faça sua aposta entre 1 e %d\n>>> ", *numero_de_dados * 6);
     scanf("%d", aposta);
     ApagarLinha(5);
 
@@ -53,8 +54,10 @@ int JogarDados(int  numero_de_dados, int aposta)
             printf(".");
             Sleep(800);
         }
-        
-        int dado = time(NULL) % numero_de_dados * 6 + 1;
+        ApagarLinha(2);
+
+        srand(time(NULL));
+        int dado = rand() % (numero_de_dados * 6) + 1;
         printf("\n\nO resultado foi %d\n", dado);
         if (dado == aposta) 
         {
@@ -68,12 +71,30 @@ int JogarDados(int  numero_de_dados, int aposta)
         }
 }
 
-int JogarNovamante(const char* fundo, const char* texto, const char* resetar)
+int JogarNovamante()
 {
+    const char* fundo = CorDeFundo();
+    const char* texto = CorDoTexto();
+    const char* resetar = reset();
     int opcao = 1;
-        printf("\n\n>>> Deseja jogar novamente? \n");
-        printf("%s>>> Sim%s\n", fundo, resetar);
-        printf("%s    Não%s\n", texto, resetar);
+
+    printf("\n\n\n\n\n\n");    
+    while (1)
+    {
+        ApagarLinha(5);
+        if (opcao == 1)
+        {
+            printf("\n\n>>> Deseja jogar novamente? \n");
+            printf("%s>>> Sim%s\n", fundo, resetar);
+            printf("%s    Não%s\n", texto, resetar);
+        }
+
+        else if (opcao == 2)
+        {
+            printf("\n\n>>> Deseja jogar novamente? \n");
+            printf("%s    Sim%s\n", texto, resetar);
+            printf("%s>>> Não%s\n", fundo, resetar);
+        }
 
     char tecla = _getch();
         if (tecla == 0)
@@ -81,32 +102,36 @@ int JogarNovamante(const char* fundo, const char* texto, const char* resetar)
             tecla = _getch();
             if (tecla == 72 && opcao > 1)
                 opcao--;
-            else if (tecla == 80 && opcao < 2)
+            else if (tecla == 80 && opcao < 3)
                 opcao++;
         }
         else if (tecla == 13)
+            break;
+    }
 
-    return 0;
+    ApagarLinha(5);
+    return opcao;
 }
 
 int main() {
-    const char* fundo = CorDeFundo();
-    const char* texto = CorDoTexto();
-    const char* resetar = reset();
 
     int numero_de_dados = 0;
     int aposta = 0;
     int pontuacao = 0;
 
-    system("chcp 65001");
-    system("cls || clear");
-
-    JogoDeDados();
     while (1)
     {
+        JogoDeDados();
         Preparacao(&numero_de_dados, &aposta);
         OpcoesDoJogo(numero_de_dados, aposta);
         pontuacao += JogarDados(numero_de_dados, aposta);
-        JogarNovamante(fundo, texto, resetar);
+        int resposta = JogarNovamante();
+        if (resposta == 2) break;
     }
+    printf("\n\n>>> Sua pontuação foi de %d pontos\n", pontuacao);
+    Sleep(2000);
+    printf(">>> Retornando ao menu\n");
+    Sleep(3000);
+
+    system("game_house.exe");
 }

@@ -114,8 +114,6 @@ int Menu() {
 
 
 int main() {
-    
-    system("chcp 65001");
     system("cls || clear");
 
     GameHouse();
@@ -123,15 +121,15 @@ int main() {
 
 
     if (opcao == 1)
-        system("cd ..\\Jogos && jogo_da_velha.exe");
+        system(".\\Jogos\\jogo_da_velha.exe");
     else if (opcao == 2)
-        system("cd ..\\Jogos && jogo_da_forca.exe");
+        system(".\\Jogos\\jogo_da_forca.exe");
     else if (opcao == 3)
-        system("cd ..\\Jogos && jogo_de_21.exe");
+        system(".\\Jogos\\jogo_de_21.exe");
     else if (opcao == 4)
-        system("cd ..\\Jogos && jogo_de_dados.exe");
+        system(".\\Jogos\\jogo_de_dados.exe");
     else if (opcao == 5)
-        system("cd ..\\Jogos && jogo_de_dados.exe");
+        system(".\\Jogos\\jogo_de_dados.exe");
     else if (opcao == 6)
         return 0;
 
