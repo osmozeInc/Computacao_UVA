@@ -103,7 +103,7 @@ int JogarNovamante()
             tecla = _getch();
             if (tecla == 72 && opcao > 1)
                 opcao--;
-            else if (tecla == 80 && opcao < 3)
+            else if (tecla == 80 && opcao < 2)
                 opcao++;
         }
         else if (tecla == 13)
