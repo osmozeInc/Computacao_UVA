@@ -20,7 +20,7 @@ void printTituloASCII() {
 
 int Menu() {
     int opcao = 1;
-            printf("Escolha uma opção:\n%s>>> Jogo da Velha%s\n%s    Jogo da forca%s\n%s    Jogo de 21%s\n%s    Jogo de dados%s\n%s    Configurações%s\n%s    Sair%s\n\n\n", Fbranco, reset, Tamarelo, reset, Tamarelo, reset, Tamarelo, reset, Tamarelo, reset, Tamarelo, reset);
+            printf("Escolha uma opção:\n%s>>> Jogo da Velha%s\n%s    Jogo da forca%s\n%s    Jogo de 21%s\n%s    Jogo de dados%s\n%s    Configurações%s\n%s    Sair%s\n", Fbranco, reset, Tamarelo, reset, Tamarelo, reset, Tamarelo, reset, Tamarelo, reset, Tamarelo, reset);
 
     while (1)
     {
@@ -36,7 +36,7 @@ int Menu() {
         else if (tecla == 13)
             break;
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 7; i++)
         {
             printf("\33[A");
             printf("\33[K");
@@ -50,7 +50,7 @@ int Menu() {
             printf("%s    Jogo de 21%s\n", Tamarelo, reset);
             printf("%s    Jogo de dados%s\n", Tamarelo, reset);
             printf("%s    Configurações%s\n", Tamarelo, reset);
-            printf("%s    Sair%s\n\n\n", Tamarelo, reset);
+            printf("%s    Sair%s\n", Tamarelo, reset);
         }
 
         if (opcao == 2)
@@ -61,7 +61,7 @@ int Menu() {
             printf("%s    Jogo de 21%s\n", Tamarelo, reset);
             printf("%s    Jogo de dados%s\n", Tamarelo, reset);
             printf("%s    Configurações%s\n", Tamarelo, reset);
-            printf("%s    Sair%s\n\n\n", Tamarelo, reset);
+            printf("%s    Sair%s\n", Tamarelo, reset);
         }
 
         if (opcao == 3)
@@ -72,7 +72,7 @@ int Menu() {
             printf("%s>>> Jogo de 21%s\n", Fbranco, reset);
             printf("%s    Jogo de dados%s\n", Tamarelo, reset);
             printf("%s    Configurações%s\n", Tamarelo, reset);
-            printf("%s    Sair%s\n\n\n", Tamarelo, reset);
+            printf("%s    Sair%s\n", Tamarelo, reset);
         }
         
         if (opcao == 4)
@@ -83,7 +83,7 @@ int Menu() {
             printf("%s    Jogo de 21%s\n", Tamarelo, reset);
             printf("%s>>> Jogo de dados%s\n", Fbranco, reset);
             printf("%s    Configurações%s\n", Tamarelo, reset);
-            printf("%s    Sair%s\n\n\n", Tamarelo, reset);
+            printf("%s    Sair%s\n", Tamarelo, reset);
         }
 
         if (opcao == 5)
@@ -94,7 +94,7 @@ int Menu() {
             printf("%s    Jogo de 21%s\n", Tamarelo, reset);
             printf("%s    Jogo de dados%s\n", Tamarelo, reset);
             printf("%s>>> Configurações%s\n", Fbranco, reset);
-            printf("%s    Sair%s\n\n\n", Tamarelo, reset);
+            printf("%s    Sair%s\n", Tamarelo, reset);
         }
 
         if (opcao == 6)
@@ -105,7 +105,7 @@ int Menu() {
             printf("%s    Jogo de 21%s\n", Tamarelo, reset);
             printf("%s    Jogo de dados%s\n", Tamarelo, reset);
             printf("%s    Configurações%s\n", Tamarelo, reset);
-            printf("%s>>> Sair%s\n\n\n", Fbranco, reset);
+            printf("%s>>> Sair%s\n", Fbranco, reset);
         }
     }
 
