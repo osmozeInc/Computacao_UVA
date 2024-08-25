@@ -54,6 +54,7 @@ int JogarDados(int  numero_de_dados, int aposta)
             printf(".");
             Sleep(800);
         }
+        printf("\e[K\n");
         ApagarLinha(2);
 
         srand(time(NULL));

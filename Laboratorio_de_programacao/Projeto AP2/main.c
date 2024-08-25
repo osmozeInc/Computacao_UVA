@@ -19,6 +19,6 @@ int main(){
     system("gcc configuracoes.c Jogos\\jogo_de_21.c -o Jogos\\jogo_de_21.exe");
     system("gcc configuracoes.c Jogos\\jogo_de_dados.c -o Jogos\\jogo_de_dados.exe");
 
-    printf("programa iniciado com sucesso!\n");
+    printf("\nprograma iniciado com sucesso!\n");
     system("game_house.exe");
 }
