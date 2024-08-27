@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-const char* CorDeFundo()
+const char* CorDeDestaqueMenu()
 {
 return "\033[44m"; 
 } 
 
-const char* CorDoTexto()
+const char* CorDoTextoMenu()
 {
 return "\033[90m";
 }
@@ -13,4 +13,4 @@ return "\033[90m";
 const char* reset()
 {
 return "\033[0m";
-} 
+}

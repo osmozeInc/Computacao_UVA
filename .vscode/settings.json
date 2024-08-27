@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "configuracoes.h": "c",
+        "conio.h": "c"
+    }
+}

@@ -1,7 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#include "configuracoes.h"
+#include "configuracoes\configuracoes.h"
+
+void ApagarLinha(int numero_de_linhas) 
+{
+    for (int i = 0; i < numero_de_linhas; i++)
+    {
+        printf("\e[A\e[K");
+    }
+}
+
 
 void GameHouse() {
     printf("  _____                                                                 \n");
@@ -15,8 +24,8 @@ void GameHouse() {
 
 
 int Menu() {
-    const char* fundo = CorDeFundo();
-    const char* texto = CorDoTexto();
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
 
     int opcao = 1;
@@ -36,11 +45,7 @@ int Menu() {
         else if (tecla == 13)
             break;
 
-        for (int i = 0; i < 7; i++)
-        {
-            printf("\e[A");
-            printf("\e[K");
-        }
+        ApagarLinha(7);
 
         if (opcao == 1)
         {
@@ -112,7 +117,6 @@ int Menu() {
     return opcao;
 }
 
-
 int main() {
     system("cls || clear");
 
@@ -129,7 +133,7 @@ int main() {
     else if (opcao == 4)
         system(".\\Jogos\\jogo_de_dados.exe");
     else if (opcao == 5)
-        system(".\\Jogos\\jogo_de_dados.exe");
+        system(".\\configuracoes\\configurar_cores.exe");
     else if (opcao == 6)
         return 0;
 

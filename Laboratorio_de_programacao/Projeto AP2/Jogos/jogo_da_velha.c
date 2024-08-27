@@ -3,7 +3,7 @@
 #include <time.h>
 #include <conio.h>
 #include <windows.h>
-#include "..\configuracoes.h"
+#include "..\configuracoes\configuracoes.h"
 
 void ApagarLinha(int numero_de_linhas) 
 {
@@ -178,8 +178,8 @@ int Jogar(char jogador, char adversario)
 
 int JogarNovamante()
 {
-    const char* fundo = CorDeFundo();
-    const char* texto = CorDoTexto();
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
     int opcao = 1;
 

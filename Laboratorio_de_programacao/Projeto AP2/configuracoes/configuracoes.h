@@ -1,8 +1,8 @@
 #ifndef CONFIGURACOES_H
 #define CONFIGURACOES_H
 
-const char* CorDeFundo();
-const char* CorDoTexto();
+const char* CorDeDestaqueMenu();
+const char* CorDoTextoMenu();
 const char* reset();
 
 #endif
