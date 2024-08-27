@@ -20,14 +20,14 @@ void CorDeDestaqueMenuConfig() {
     const char* resetar = reset();
     int opcao = 1;
 
+    printf("Escolha uma cor de fundo para o menu:\n");
+    printf("\n\n\n\n\n");
     while (1)
     {
-        printf("Escolha uma cor de fundo para o menu:\n");
-        printf("\n\n\n\n\n\n");
 
         if (opcao == 1)
         {
-        ApagarLinha(6);
+        ApagarLinha(5);
         printf("%s>>> Azul%s\n", fundo, resetar);
         printf("%s    Verde%s\n", texto, resetar);
         printf("%s    Vermelho%s\n", texto, resetar);
@@ -37,7 +37,7 @@ void CorDeDestaqueMenuConfig() {
 
         if (opcao == 2)
         {
-        ApagarLinha(6);
+        ApagarLinha(5);
         printf("%s    Azul%s\n", texto, resetar);
         printf("%s>>> Verde%s\n", fundo, resetar);
         printf("%s    Vermelho%s\n", texto, resetar);
@@ -47,7 +47,7 @@ void CorDeDestaqueMenuConfig() {
 
         if (opcao == 3)
         {
-        ApagarLinha(6);
+        ApagarLinha(5);
         printf("%s    Azul%s\n", texto, resetar);
         printf("%s    Verde%s\n", texto, resetar);
         printf("%s>>> Vermelho%s\n", fundo, resetar);
@@ -57,7 +57,7 @@ void CorDeDestaqueMenuConfig() {
 
         if (opcao == 4)
         {
-        ApagarLinha(6);
+        ApagarLinha(5);
         printf("%s    Azul%s\n", texto, resetar);
         printf("%s    Verde%s\n", texto, resetar);
         printf("%s    Vermelho%s\n", texto, resetar);
@@ -67,7 +67,7 @@ void CorDeDestaqueMenuConfig() {
 
         if (opcao == 5)
         {
-        ApagarLinha(6);
+        ApagarLinha(5);
         printf("%s    Azul%s\n", texto, resetar);
         printf("%s    Verde%s\n", texto, resetar);
         printf("%s    Vermelho%s\n", texto, resetar);
@@ -148,7 +148,7 @@ int Menu() {
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
             printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
-            printf("%s>>> Sair%s\n", texto, resetar);
+            printf("%s    Sair%s\n", texto, resetar);
         }
 
         if (opcao == 2)
@@ -158,7 +158,7 @@ int Menu() {
             printf("%s>>> Escolher cor do texto do menu%s\n", fundo, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
             printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
-            printf("%s>>> Sair%s\n", texto, resetar);
+            printf("%s    Sair%s\n", texto, resetar);
         }
 
         if (opcao == 3)
@@ -168,7 +168,7 @@ int Menu() {
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto destaque nos jogos%s\n", fundo, resetar);
             printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
-            printf("%s>>> Sair%s\n", texto, resetar);
+            printf("%s    Sair%s\n", texto, resetar);
         }
         
         if (opcao == 4)
@@ -178,7 +178,7 @@ int Menu() {
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto nos jogos%s\n", fundo, resetar);
-            printf("%s>>> Sair%s\n", texto, resetar);
+            printf("%s    Sair%s\n", texto, resetar);
 
         }
 
@@ -198,13 +198,14 @@ int Menu() {
             tecla = _getch();
             if (tecla == 72 && opcao > 1)
                 opcao--;
-            else if (tecla == 80 && opcao < 4)
+            else if (tecla == 80 && opcao < 5)
                 opcao++;
         }
         else if (tecla == 13)
             break;
     }
 
+    ApagarLinha(6);
     return opcao;
 }
 
