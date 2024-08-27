@@ -16,13 +16,13 @@ void ApagarLinha(int numero_de_linhas)
 
 void CorDeDestaqueMenuConfig() {
     const char* fundo = CorDeDestaqueMenu();
-    const char* texto = corDoTextoMenu();
+    const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
     int opcao = 1;
 
     while (1)
     {
-        printff("Escolha uma cor de fundo para o menu:\n");
+        printf("Escolha uma cor de fundo para o menu:\n");
         printf("\n\n\n\n\n\n");
 
         if (opcao == 1)
@@ -75,37 +75,46 @@ void CorDeDestaqueMenuConfig() {
         printf("%s>>> Roxo%s\n", fundo, resetar);
         }
 
-            char tecla = _getch();
-            if (tecla == 0)
-            {
-                tecla = _getch();
-                if (tecla == 72 && opcao > 1)
-                    opcao--;
-                else if (tecla == 80 && opcao < 5)
-                    opcao++;
-            }
-            else if (tecla == 13) break;
+        char tecla = _getch();
+        if (tecla == 0)
+        {
+            tecla = _getch();
+            if (tecla == 72 && opcao > 1)
+                opcao--;
+            else if (tecla == 80 && opcao < 5)
+                opcao++;
+        }
+        else if (tecla == 13) break;
     }
-
-    
-
-
-
-
-
 
     FILE *arquivo = fopen("configuracoes/fundo_do_menu.txt", "w");
     if (arquivo == NULL) {
         perror("Não foi possível abrir o arquivo");
         return;
     }
-    else {
-        fprintf(arquivo, "\\033[44m\n\\033[37m\n\\033[47m\n\\033[30m");
+
+    else if (opcao == 1) {
+        fprintf(arquivo, "\\033[44m");
         fclose(arquivo);
     }
-
-
-
+    else if (opcao == 2) {
+        fprintf(arquivo, "\\033[42m");
+        fclose(arquivo);
+    }
+    else if (opcao == 3) {
+        fprintf(arquivo, "\\033[41m");
+        fclose(arquivo);
+    }
+    else if (opcao == 4)
+    {
+        fprintf(arquivo, "\\033[43m");
+        fclose(arquivo);
+    }
+    else if (opcao == 5)
+    {
+        fprintf(arquivo, "\\033[45m");
+        fclose(arquivo);
+    }
 
 }
 
@@ -117,68 +126,6 @@ void CorDeFundoJogoConfig() {
 }
 
 void CorDoTextoJogoConfig() {
-}
-
-
-void ReceberConfiguracoes() {
-    FILE *arquivo = fopen("configuracoes/configuracoes.txt", "r");
-    if (arquivo == NULL) {
-        perror("Não foi possível abrir o arquivo");
-        return;
-    }
-
-    char corFundoMenu[20]; // Buffer para a cor de fundo do menu
-    char corTextoMenu[20]; // Buffer para a cor do texto do menu
-    char corFundoJogo[20]; // Buffer para a cor de fundo do jogo
-    char corTextoJogo[20]; // Buffer para a cor do texto do jogo
-
-    // Lê a primeira linha e armazena na variável corFundoMenu
-    if (fgets(corFundoMenu, sizeof(corFundoMenu), arquivo) == NULL) {
-        perror("Erro ao ler a configuração de cor de fundo do menu");
-        fclose(arquivo);
-        return;
-    }
-
-    // Remove o caractere de nova linha, se presente
-    corFundoMenu[strcspn(corFundoMenu, "\n")] = 0;
-
-    // Lê a segunda linha e armazena na variável corTextoMenu
-    if (fgets(corTextoMenu, sizeof(corTextoMenu), arquivo) == NULL) {
-        perror("Erro ao ler a configuração de cor do texto do menu");
-        fclose(arquivo);
-        return;
-    }
-
-    // Remove o caractere de nova linha, se presente
-    corTextoMenu[strcspn(corTextoMenu, "\n")] = 0;
-
-    // Lê a terceira linha e armazena na variável corFundoJogo
-    if (fgets(corFundoJogo, sizeof(corFundoJogo), arquivo) == NULL) {
-        perror("Erro ao ler a configuração de cor de fundo do jogo");
-        fclose(arquivo);
-        return;
-    }
-
-    // Remove o caractere de nova linha, se presente
-    corFundoJogo[strcspn(corFundoJogo, "\n")] = 0;
-
-    // Lê a quarta linha e armazena na variável corTextoJogo
-    if (fgets(corTextoJogo, sizeof(corTextoJogo), arquivo) == NULL) {
-        perror("Erro ao ler a configuração de cor do texto do jogo");
-        fclose(arquivo);
-        return;
-    }
-
-    // Remove o caractere de nova linha, se presente
-    corTextoJogo[strcspn(corTextoJogo, "\n")] = 0;
-
-    fclose(arquivo);
-
-    // Exibir as cores lidas
-    printf("Cor de fundo do menu: %s\n", corFundoMenu);
-    printf("Cor do texto do menu: %s\n", corTextoMenu);
-    printf("Cor de fundo do jogo: %s\n", corFundoJogo);
-    printf("Cor do texto do jogo: %s\n", corTextoJogo);
 }
 
 
@@ -201,6 +148,7 @@ int Menu() {
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
             printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
+            printf("%s>>> Sair%s\n", texto, resetar);
         }
 
         if (opcao == 2)
@@ -210,6 +158,7 @@ int Menu() {
             printf("%s>>> Escolher cor do texto do menu%s\n", fundo, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
             printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
+            printf("%s>>> Sair%s\n", texto, resetar);
         }
 
         if (opcao == 3)
@@ -219,6 +168,7 @@ int Menu() {
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto destaque nos jogos%s\n", fundo, resetar);
             printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
+            printf("%s>>> Sair%s\n", texto, resetar);
         }
         
         if (opcao == 4)
@@ -228,6 +178,18 @@ int Menu() {
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto nos jogos%s\n", fundo, resetar);
+            printf("%s>>> Sair%s\n", texto, resetar);
+
+        }
+
+        if (opcao == 5)
+        {
+            printf("Escolha uma opção:\n");
+            printf("%s    Escolher cor do texto em destaque do menu%s\n", texto, resetar);
+            printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
+            printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
+            printf("%s    Escolher cor do texto nos jogos%s\n", texto, resetar);
+            printf("%s>>> Sair%s\n", fundo, resetar);
         }
 
         char tecla = _getch();
@@ -246,9 +208,11 @@ int Menu() {
     return opcao;
 }
 
+
 int main() {
     int opcao;
 
+    system("cls");
     while (1)
     {
         opcao = Menu();
@@ -266,6 +230,6 @@ int main() {
             break;
         }
     }
-    
+
     return 0;
 }
