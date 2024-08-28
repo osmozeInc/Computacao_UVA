@@ -11,7 +11,7 @@ int main() {
    fgets(palavra, 10, arquivo);
    fclose(arquivo);
    printf("%c\n", palavra[6]);
-    if (palavra[7] == 4) {
+    if (palavra[6] == '4') {
       printf("É azul");
    }
 }

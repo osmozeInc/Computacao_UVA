@@ -115,17 +115,321 @@ void CorDeDestaqueMenuConfig() {
         fprintf(arquivo, "\\033[45m");
         fclose(arquivo);
     }
-
+    ApagarLinha(6);
 }
 
 void CorDoTextoMenuConfig() {
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+    int opcao = 1;
+
+    printf("Escolha uma cor para o texto do menu:\n");
+    printf("\n\n\n\n\n");
+    while (1)
+    {
+
+        if (opcao == 1)
+        {
+        ApagarLinha(5);
+        printf("%s>>> Cinza%s\n", fundo, resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 2)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("%s>>> Verde%s\n", fundo, resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 3)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("%s>>> Vermelho%s\n", fundo, resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 4)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("%s>>> Amarelo%s\n", fundo, resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 5)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("%s>>> Vermelho%s\n", fundo, resetar);
+        }
+
+        char tecla = _getch();
+        if (tecla == 0)
+        {
+            tecla = _getch();
+            if (tecla == 72 && opcao > 1)
+                opcao--;
+            else if (tecla == 80 && opcao < 5)
+                opcao++;
+        }
+        else if (tecla == 13) break;
+    }
+
+    FILE *arquivo = fopen("configuracoes/texto_do_menu.txt", "w");
+    if (arquivo == NULL) {
+        perror("Não foi possível abrir o arquivo");
+        return;
+    }
+
+    else if (opcao == 1) {
+        fprintf(arquivo, "\\033[90m");
+        fclose(arquivo);
+    }
+    else if (opcao == 2) {
+        fprintf(arquivo, "\\033[32m");
+        fclose(arquivo);
+    }
+    else if (opcao == 3) {
+        fprintf(arquivo, "\\033[36m");
+        fclose(arquivo);
+    }
+    else if (opcao == 4)
+    {
+        fprintf(arquivo, "\\033[33m");
+        fclose(arquivo);
+    }
+    else if (opcao == 5)
+    {
+        fprintf(arquivo, "\\033[31m");
+        fclose(arquivo);
+    }
+    ApagarLinha(6);
 
 }
 
 void CorDeFundoJogoConfig() {
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+    int opcao = 1;
+
+    printf("Escolha uma cor para o texto em destaque no jogo:\n");
+    printf("\n\n\n\n\n");
+    while (1)
+    {
+
+        if (opcao == 1)
+        {
+        ApagarLinha(5);
+        printf(">>> Cinza%s\n", fundo, resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 2)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf(">>> Verde%s\n", fundo, resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 3)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf(">>> Vermelho%s\n", fundo, resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 4)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf(">> Amarelo%s\n", fundo, resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 5)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("%s>>> Vermelho%s\n", fundo, resetar);
+        }
+
+        char tecla = _getch();
+        if (tecla == 0)
+        {
+            tecla = _getch();
+            if (tecla == 72 && opcao > 1)
+                opcao--;
+            else if (tecla == 80 && opcao < 5)
+                opcao++;
+        }
+        else if (tecla == 13) break;
+    }
+
+    FILE *arquivo = fopen("configuracoes/destaque_do_jogo.txt", "w");
+    if (arquivo == NULL) {
+        perror("Não foi possível abrir o arquivo");
+        return;
+    }
+
+    else if (opcao == 1) {
+        fprintf(arquivo, "\\033[90m");
+        fclose(arquivo);
+    }
+    else if (opcao == 2) {
+        fprintf(arquivo, "\\033[32m");
+        fclose(arquivo);
+    }
+    else if (opcao == 3) {
+        fprintf(arquivo, "\\033[36m");
+        fclose(arquivo);
+    }
+    else if (opcao == 4)
+    {
+        fprintf(arquivo, "\\033[33m");
+        fclose(arquivo);
+    }
+    else if (opcao == 5)
+    {
+        fprintf(arquivo, "\\033[31m");
+        fclose(arquivo);
+    }
+    ApagarLinha(6);
 }
 
 void CorDoTextoJogoConfig() {
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+    int opcao = 1;
+
+    printf("Escolha uma cor para o texto do jogo:\n");
+    printf("\n\n\n\n\n");
+    while (1)
+    {
+
+        if (opcao == 1)
+        {
+        ApagarLinha(5);
+        printf("%s>>> Cinza%s\n", fundo, resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 2)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("%s>>> Verde%s\n", fundo, resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 3)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("%s>>> Vermelho%s\n", fundo, resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 4)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("%s>>> Amarelo%s\n", fundo, resetar);
+        printf("\033[31m    Vermelho%s\n", resetar);
+        }
+
+        if (opcao == 5)
+        {
+        ApagarLinha(5);
+        printf("\033[90m    Cinza%s\n", resetar);
+        printf("\033[32m    Verde%s\n", resetar);
+        printf("\033[36m    Ciano%s\n", resetar);
+        printf("\033[33m    Amarelo%s\n", resetar);
+        printf("%s>>> Vermelho%s\n", fundo, resetar);
+        }
+
+        char tecla = _getch();
+        if (tecla == 0)
+        {
+            tecla = _getch();
+            if (tecla == 72 && opcao > 1)
+                opcao--;
+            else if (tecla == 80 && opcao < 5)
+                opcao++;
+        }
+        else if (tecla == 13) break;
+    }
+
+    FILE *arquivo = fopen("configuracoes/texto_do_jogo.txt", "w");
+    if (arquivo == NULL) {
+        perror("Não foi possível abrir o arquivo");
+        return;
+    }
+
+    else if (opcao == 1) {
+        fprintf(arquivo, "\\033[90m");
+        fclose(arquivo);
+    }
+    else if (opcao == 2) {
+        fprintf(arquivo, "\\033[32m");
+        fclose(arquivo);
+    }
+    else if (opcao == 3) {
+        fprintf(arquivo, "\\033[36m");
+        fclose(arquivo);
+    }
+    else if (opcao == 4)
+    {
+        fprintf(arquivo, "\\033[33m");
+        fclose(arquivo);
+    }
+    else if (opcao == 5)
+    {
+        fprintf(arquivo, "\\033[31m");
+        fclose(arquivo);
+    }
+    ApagarLinha(6);
+
 }
 
 
@@ -223,14 +527,16 @@ int main() {
         if (opcao == 4)  CorDoTextoJogoConfig();
         if (opcao == 5)
         {
-            printf("É necessário reiniciar o programa para aplicar as alterações.\n");
-            Sleep(1000);
-            printf("Fechando...\n");
-            Sleep(1000);
-            printf("Execute novamente o programa\n");
+            printf("Retornando ao menu");
+            for (int i = 0; i < 3; i++)
+            {
+                printf(".");
+                Sleep(800);
+            }
             break;
         }
     }
+    system("game_house.exe");
 
     return 0;
 }
