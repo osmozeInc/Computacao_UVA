@@ -5,6 +5,56 @@
 #include <string.h>
 #include "configuracoes.h"
 
+void ApagarLinha(int numero_de_linhas) 
+{
+    for (int i = 0; i < numero_de_linhas; i++)
+    {
+        printf("\e[A\e[K");
+    }
+}
+
+int JogarNovamante()
+{
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+    int opcao = 1;
+
+    printf("\n\n\n\n\n\n");    
+    while (1)
+    {
+        ApagarLinha(5);
+        if (opcao == 1)
+        {
+            printf("\n\n>>> Deseja jogar novamente? \n");
+            printf("%s>>> Sim%s\n", fundo, resetar);
+            printf("%s    Não%s\n", texto, resetar);
+        }
+
+        else if (opcao == 2)
+        {
+            printf("\n\n>>> Deseja jogar novamente? \n");
+            printf("%s    Sim%s\n", texto, resetar);
+            printf("%s>>> Não%s\n", fundo, resetar);
+        }
+
+    char tecla = _getch();
+        if (tecla == 0)
+        {
+            tecla = _getch();
+            if (tecla == 72 && opcao > 1)
+                opcao--;
+            else if (tecla == 80 && opcao < 2)
+                opcao++;
+        }
+        else if (tecla == 13)
+            break;
+    }
+
+    ApagarLinha(5);
+    return opcao;
+}
+
 const char* CorDeDestaqueMenu()
 {
     char conteudo[10];
@@ -43,7 +93,7 @@ const char* CorDoTextoMenu()
     } else if (conteudo[6] == '6') {
         return "\033[36m"; // Ciano
     } else if (conteudo[6] == '3') {
-        return "\033[3m"; // Amarelo
+        return "\033[33m"; // Amarelo
     } else if (conteudo[6] == '1') {
         return "\033[31m"; // Vermelho
     } else {
@@ -66,7 +116,7 @@ const char* CorDeDestaqueJogo()
     } else if (conteudo[6] == '6') {
         return "\033[36m"; // Ciano
     } else if (conteudo[6] == '3') {
-        return "\033[3m"; // Amarelo
+        return "\033[33m"; // Amarelo
     } else if (conteudo[6] == '1') {
         return "\033[31m"; // Vermelho
     } else {
@@ -89,7 +139,7 @@ const char* CorDoTextoJogo()
     } else if (conteudo[6] == '6') {
         return "\033[36m"; // Ciano
     } else if (conteudo[6] == '3') {
-        return "\033[3m"; // Amarelo
+        return "\033[33m"; // Amarelo
     } else if (conteudo[6] == '1') {
         return "\033[31m"; // Vermelho
     } else {

@@ -5,22 +5,13 @@
 #include "configuracoes.h"
 
 
-void ApagarLinha(int numero_de_linhas) 
-{
-    for (int i = 0; i < numero_de_linhas; i++)
-    {
-        printf("\e[A\e[K");
-    }
-}
-
-
 void CorDeDestaqueMenuConfig() {
     const char* fundo = CorDeDestaqueMenu();
     const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
     int opcao = 1;
 
-    printf("Escolha uma cor de fundo para o menu:\n");
+    printf("%sEscolha uma cor de fundo para o menu:%s\n", texto, resetar);
     printf("\n\n\n\n\n");
     while (1)
     {
@@ -124,7 +115,7 @@ void CorDoTextoMenuConfig() {
     const char* resetar = reset();
     int opcao = 1;
 
-    printf("Escolha uma cor para o texto do menu:\n");
+    printf("%sEscolha uma cor para o texto do menu:%s\n", texto, resetar);
     printf("\n\n\n\n\n");
     while (1)
     {
@@ -229,59 +220,59 @@ void CorDeFundoJogoConfig() {
     const char* resetar = reset();
     int opcao = 1;
 
-    printf("Escolha uma cor para o texto em destaque no jogo:\n");
+    printf("%sEscolha uma cor para o texto em destaque no jogo:%s\n", texto, resetar);
     printf("\n\n\n\n\n");
     while (1)
     {
 
         if (opcao == 1)
         {
-        ApagarLinha(5);
-        printf(">>> Cinza%s\n", fundo, resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("%s>>> Cinza%s\n", fundo, resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 2)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf(">>> Verde%s\n", fundo, resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("%s>>> Verde%s\n", fundo, resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 3)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf(">>> Vermelho%s\n", fundo, resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("%s>>> Vermelho%s\n", fundo, resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 4)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf(">> Amarelo%s\n", fundo, resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("%s>>> Amarelo%s\n", fundo, resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 5)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("%s>>> Vermelho%s\n", fundo, resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("%s>>> Vermelho%s\n", fundo, resetar);
         }
 
         char tecla = _getch();
@@ -333,59 +324,59 @@ void CorDoTextoJogoConfig() {
     const char* resetar = reset();
     int opcao = 1;
 
-    printf("Escolha uma cor para o texto do jogo:\n");
+    printf("%sEscolha uma cor para o texto do jogo:%s\n", texto, resetar);
     printf("\n\n\n\n\n");
     while (1)
     {
 
         if (opcao == 1)
         {
-        ApagarLinha(5);
-        printf("%s>>> Cinza%s\n", fundo, resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("%s>>> Cinza%s\n", fundo, resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 2)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("%s>>> Verde%s\n", fundo, resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("%s>>> Verde%s\n", fundo, resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 3)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("%s>>> Vermelho%s\n", fundo, resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("%s>>> Vermelho%s\n", fundo, resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 4)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("%s>>> Amarelo%s\n", fundo, resetar);
-        printf("\033[31m    Vermelho%s\n", resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("%s>>> Amarelo%s\n", fundo, resetar);
+            printf("\033[31m    Vermelho%s\n", resetar);
         }
 
         if (opcao == 5)
         {
-        ApagarLinha(5);
-        printf("\033[90m    Cinza%s\n", resetar);
-        printf("\033[32m    Verde%s\n", resetar);
-        printf("\033[36m    Ciano%s\n", resetar);
-        printf("\033[33m    Amarelo%s\n", resetar);
-        printf("%s>>> Vermelho%s\n", fundo, resetar);
+            ApagarLinha(5);
+            printf("\033[90m    Cinza%s\n", resetar);
+            printf("\033[32m    Verde%s\n", resetar);
+            printf("\033[36m    Ciano%s\n", resetar);
+            printf("\033[33m    Amarelo%s\n", resetar);
+            printf("%s>>> Vermelho%s\n", fundo, resetar);
         }
 
         char tecla = _getch();
@@ -447,7 +438,7 @@ int Menu() {
 
         if (opcao == 1)
         {
-            printf("Escolha uma opção:\n");
+            printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto em destaque do menu%s\n", fundo, resetar);
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
@@ -457,7 +448,7 @@ int Menu() {
 
         if (opcao == 2)
         {
-            printf("Escolha uma opção:\n");
+            printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Escolher cor do texto em destaque do menu%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto do menu%s\n", fundo, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
@@ -467,7 +458,7 @@ int Menu() {
 
         if (opcao == 3)
         {
-            printf("Escolha uma opção:\n");
+            printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Escolher cor do texto em destaque do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s>>> Escolher cor do texto destaque nos jogos%s\n", fundo, resetar);
@@ -477,7 +468,7 @@ int Menu() {
         
         if (opcao == 4)
         {
-            printf("Escolha uma opção:\n");
+            printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Escolher cor do texto em destaque do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);
@@ -488,7 +479,7 @@ int Menu() {
 
         if (opcao == 5)
         {
-            printf("Escolha uma opção:\n");
+            printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Escolher cor do texto em destaque do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto do menu%s\n", texto, resetar);
             printf("%s    Escolher cor do texto destaque nos jogos%s\n", texto, resetar);

@@ -17,15 +17,6 @@ void JogoDeDados()
     printf("\e[15C|[====================================================================]|  \n\n\n");
 }
 
-void ApagarLinha(int numero_de_linhas) 
-{
-    for (int i = 0; i < numero_de_linhas; i++)
-    {
-        printf("\e[A");
-        printf("\e[K");
-    }
-}
-
 void OpcoesDoJogo(int numero_de_dados, int aposta) 
 {
     printf("jogando com %d dados\n", numero_de_dados);
@@ -70,48 +61,6 @@ int JogarDados(int  numero_de_dados, int aposta)
             printf(">>> VOCÊ PERDEU! <<<");
             return 0;
         }
-}
-
-int JogarNovamante()
-{
-    const char* fundo = CorDeDestaqueMenu();
-    const char* texto = CorDoTextoMenu();
-    const char* resetar = reset();
-    int opcao = 1;
-
-    printf("\n\n\n\n\n\n");    
-    while (1)
-    {
-        ApagarLinha(5);
-        if (opcao == 1)
-        {
-            printf("\n\n>>> Deseja jogar novamente? \n");
-            printf("%s>>> Sim%s\n", fundo, resetar);
-            printf("%s    Não%s\n", texto, resetar);
-        }
-
-        else if (opcao == 2)
-        {
-            printf("\n\n>>> Deseja jogar novamente? \n");
-            printf("%s    Sim%s\n", texto, resetar);
-            printf("%s>>> Não%s\n", fundo, resetar);
-        }
-
-    char tecla = _getch();
-        if (tecla == 0)
-        {
-            tecla = _getch();
-            if (tecla == 72 && opcao > 1)
-                opcao--;
-            else if (tecla == 80 && opcao < 2)
-                opcao++;
-        }
-        else if (tecla == 13)
-            break;
-    }
-
-    ApagarLinha(5);
-    return opcao;
 }
 
 int main() {

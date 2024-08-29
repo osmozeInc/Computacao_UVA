@@ -5,14 +5,6 @@
 #include <windows.h>
 #include "..\configuracoes\configuracoes.h"
 
-void ApagarLinha(int numero_de_linhas) 
-{
-    for (int i = 0; i < numero_de_linhas; i++)
-    {
-        printf("\e[A\e[K");
-    }
-}
-
 
 void JogoDaVelha() 
 {
@@ -28,6 +20,9 @@ void JogoDaVelha()
 
 int OpcoesDoJogo() 
 {
+    const char* fundo = CorDeDestaqueJogo();
+    const char* texto = CorDoTextoJogo();
+    const char* resetar = reset();
     int opcao = 1;
 
     printf("Jogador 1: \'X\' ou \'O\' ?\n\n\n\n");    
@@ -36,14 +31,14 @@ int OpcoesDoJogo()
         ApagarLinha(2);
         if (opcao == 1)
         {
-            printf("\e[32m>>> X\e[0m\n");
-            printf("\e[90m    O\e[0m\n");
+            printf("%s>>> X%s\n", fundo, resetar);
+            printf("%s    O%s\n", texto, resetar);
         }
 
         else if (opcao == 2)
         {
-            printf("\e[90m    X\e[0m\n");
-            printf("\e[32m>>> O\e[0m\n");
+            printf("%s    X%s\n", texto, resetar);
+            printf("%s>>> O%s\n", fundo, resetar);
         }
 
     char tecla = _getch();
@@ -128,7 +123,20 @@ int VerificarVitoria(char tabuleiro[3][3], char ganhador)
         return 1;
     }
     
-    return 0;
+    int espacos_vazios = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (tabuleiro[i][j] == ' ')
+            {
+                espacos_vazios++;
+            }
+        }
+    }
+    if (espacos_vazios == 0) return 0;
+
+    return 2;
 }
 
 
@@ -155,15 +163,19 @@ int Jogar(char jogador, char adversario)
         DesenharJogo(tabuleiro) ;       
         RealizarJogada(tabuleiro, jogador, 1);
         fim_do_jogo = VerificarVitoria(tabuleiro, jogador);
-        if (fim_do_jogo){
+        if (fim_do_jogo == 1){
             fim_do_jogo = 1;
+            break;
+        }
+        else if (fim_do_jogo == 0){
+            fim_do_jogo = 0;
             break;
         }
         
         DesenharJogo(tabuleiro);
         RealizarJogada(tabuleiro, adversario, 2);
         fim_do_jogo = VerificarVitoria(tabuleiro, adversario);
-        if (fim_do_jogo){
+        if (fim_do_jogo == 1){
             fim_do_jogo = -1;
             break;
         }   
@@ -172,51 +184,14 @@ int Jogar(char jogador, char adversario)
     DesenharJogo(tabuleiro);
     if (fim_do_jogo > 0) printf("\nVITORIA DO JOGADOR 1");
     else if (fim_do_jogo < 0) printf("\nVITORIA DO JOGADOR 2");
+    else if  (fim_do_jogo == 0) {
+        printf("\nEMPATE");
+        return 0;
+    }
+
     return 15;
 }
 
-
-int JogarNovamante()
-{
-    const char* fundo = CorDeDestaqueMenu();
-    const char* texto = CorDoTextoMenu();
-    const char* resetar = reset();
-    int opcao = 1;
-
-    printf("\n\n\n\n\n\n");    
-    while (1)
-    {
-        ApagarLinha(5);
-        if (opcao == 1)
-        {
-            printf("\n\n>>> Deseja jogar novamente? \n");
-            printf("%s>>> Sim%s\n", fundo, resetar);
-            printf("%s    Não%s\n", texto, resetar);
-        }
-
-        else if (opcao == 2)
-        {
-            printf("\n\n>>> Deseja jogar novamente? \n");
-            printf("%s    Sim%s\n", texto, resetar);
-            printf("%s>>> Não%s\n", fundo, resetar);
-        }
-
-    char tecla = _getch();
-        if (tecla == 0)
-        {
-            tecla = _getch();
-            if (tecla == 72 && opcao > 1)
-                opcao--;
-            else if (tecla == 80 && opcao < 3)
-                opcao++;
-        }
-        else if (tecla == 13)
-            break;
-    }
-
-    ApagarLinha(5);
-    return opcao;
-}
 
 int main() {
     char jogador = 0;

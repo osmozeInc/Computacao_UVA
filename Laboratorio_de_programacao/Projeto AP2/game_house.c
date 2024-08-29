@@ -3,14 +3,6 @@
 #include <conio.h>
 #include "configuracoes\configuracoes.h"
 
-void ApagarLinha(int numero_de_linhas) 
-{
-    for (int i = 0; i < numero_de_linhas; i++)
-    {
-        printf("\e[A\e[K");
-    }
-}
-
 
 void GameHouse() {
     printf("  _____                                                                 \n");
@@ -22,96 +14,64 @@ void GameHouse() {
     printf("                                                                      \n\n");
 }
 
-
 int Menu() {
     const char* fundo = CorDeDestaqueMenu();
     const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
 
     int opcao = 1;
-            printf("Escolha uma opção:\n%s>>> Jogo da Velha%s\n%s    Jogo da forca%s\n%s    Jogo de 21%s\n%s    Jogo de dados%s\n%s    Configurações%s\n%s    Sair%s\n", fundo, resetar, texto, resetar, texto, resetar, texto, resetar, texto, resetar, texto, resetar);
+            printf("\n\n\n\n\n");
 
     while (1)
     {
-        char tecla = _getch();
-        if (tecla == 0)
-        {
-            tecla = _getch();
-            if (tecla == 72 && opcao > 1)
-                opcao--;
-            else if (tecla == 80 && opcao < 6)
-                opcao++;
-        }
-        else if (tecla == 13)
-            break;
-
-        ApagarLinha(7);
-
+        ApagarLinha(5);
         if (opcao == 1)
         {
-            printf("Escolha uma opção:\n");
+            printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s>>> Jogo da Velha%s\n", fundo, resetar);
-            printf("%s    Jogo da forca%s\n", texto, resetar);
-            printf("%s    Jogo de 21%s\n", texto, resetar);
             printf("%s    Jogo de dados%s\n", texto, resetar);
             printf("%s    Configurações%s\n", texto, resetar);
             printf("%s    Sair%s\n", texto, resetar);
         }
-
+        
         if (opcao == 2)
         {
-            printf("Escolha uma opção:\n");
+           printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Jogo da Velha%s\n", texto, resetar);
-            printf("%s>>> Jogo da forca%s\n", fundo, resetar);
-            printf("%s    Jogo de 21%s\n", texto, resetar);
-            printf("%s    Jogo de dados%s\n", texto, resetar);
+            printf("%s>>> Jogo de dados%s\n", fundo, resetar);
             printf("%s    Configurações%s\n", texto, resetar);
             printf("%s    Sair%s\n", texto, resetar);
         }
 
         if (opcao == 3)
         {
-            printf("Escolha uma opção:\n");
+           printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Jogo da Velha%s\n", texto, resetar);
-            printf("%s    Jogo da forca%s\n", texto, resetar);
-            printf("%s>>> Jogo de 21%s\n", fundo, resetar);
-            printf("%s    Jogo de dados%s\n", texto, resetar);
-            printf("%s    Configurações%s\n", texto, resetar);
-            printf("%s    Sair%s\n", texto, resetar);
-        }
-        
-        if (opcao == 4)
-        {
-            printf("Escolha uma opção:\n");
-            printf("%s    Jogo da Velha%s\n", texto, resetar);
-            printf("%s    Jogo da forca%s\n", texto, resetar);
-            printf("%s    Jogo de 21%s\n", texto, resetar);
-            printf("%s>>> Jogo de dados%s\n", fundo, resetar);
-            printf("%s    Configurações%s\n", texto, resetar);
-            printf("%s    Sair%s\n", texto, resetar);
-        }
-
-        if (opcao == 5)
-        {
-            printf("Escolha uma opção:\n");
-            printf("%s    Jogo da Velha%s\n", texto, resetar);
-            printf("%s    Jogo da forca%s\n", texto, resetar);
-            printf("%s    Jogo de 21%s\n", texto, resetar);
             printf("%s    Jogo de dados%s\n", texto, resetar);
             printf("%s>>> Configurações%s\n", fundo, resetar);
             printf("%s    Sair%s\n", texto, resetar);
         }
 
-        if (opcao == 6)
+        if (opcao == 4)
         {
-            printf("Escolha uma opção:\n");
+           printf("%sEscolha uma opção:%s\n", texto, resetar);
             printf("%s    Jogo da Velha%s\n", texto, resetar);
-            printf("%s    Jogo da forca%s\n", texto, resetar);
-            printf("%s    Jogo de 21%s\n", texto, resetar);
             printf("%s    Jogo de dados%s\n", texto, resetar);
             printf("%s    Configurações%s\n", texto, resetar);
             printf("%s>>> Sair%s\n", fundo, resetar);
         }
+
+        char tecla = _getch();
+        if (tecla == 0)
+        {
+            tecla = _getch();
+            if (tecla == 72 && opcao > 1)
+                opcao--;
+            else if (tecla == 80 && opcao < 4)
+                opcao++;
+        }
+        else if (tecla == 13)
+            break;
     }
 
     return opcao;
@@ -127,14 +87,10 @@ int main() {
     if (opcao == 1)
         system(".\\Jogos\\jogo_da_velha.exe");
     else if (opcao == 2)
-        system(".\\Jogos\\jogo_da_forca.exe");
-    else if (opcao == 3)
-        system(".\\Jogos\\jogo_de_21.exe");
-    else if (opcao == 4)
         system(".\\Jogos\\jogo_de_dados.exe");
-    else if (opcao == 5)
+    else if (opcao == 3)
         system(".\\configuracoes\\configurar_cores.exe");
-    else if (opcao == 6)
+    else if (opcao == 4)
         return 0;
 
 }
