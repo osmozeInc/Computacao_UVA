@@ -2,9 +2,10 @@
 #define CONFIGURACOES_H
 
 void ApagarLinha();
-int JogarNovamante();
+int JogarNovamente();
 void LimparBuffer();
 int EscolherRegistrar();
+void RegistrarPlacar();
 const char* CorDeDestaqueMenu();
 const char* CorDoTextoMenu();
 const char* CorDeDestaqueJogo();

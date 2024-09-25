@@ -206,17 +206,19 @@ int main() {
     char jogador = 0;
     int adversario = 0;
     int pontuacao = 0;
+    int resposta = 0;
 
-    while (1)
+    while (resposta != 2)
     {
         JogoDaVelha();
         jogador = OpcoesDoJogo();
         adversario = DefinirAdversario(jogador);
         pontuacao += Jogar(jogador, adversario);
         LimparBuffer();
+        resposta = JogarNovamente();
     }
 
-    int resposta = EscolherRegistrar(pontuacao);
+    EscolherRegistrar(pontuacao);
     //if (resposta == 1) RegistrarPlacar(pontuacao, 'V');
 
     printf(">>> Retornando ao menu\n");

@@ -3,7 +3,8 @@
 #include "configuracoes\configuracoes.h"
 
 
-void GameHouse() {
+void GameHouse() 
+{
     printf("  _____                                                                 \n");
     printf(" / ____|                         _    _                                 \n");
     printf("| |  __  __ _ _ __ ____  ___    | |  | |      _   _  ___  ___           \n");
@@ -13,7 +14,8 @@ void GameHouse() {
     printf("                                                                      \n\n");
 }
 
-int Menu() {
+int Menu() 
+{
     const char* fundo = CorDeDestaqueMenu();
     const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
@@ -21,44 +23,58 @@ int Menu() {
     int tecla_int;
 
     int opcao = 1;
-            printf("\n\n\n\n\n\n");
+            printf("\n\n\n\n\n\n\n");
 
     while (1)
     {
         ApagarLinha(7);
         if (opcao == 1)
         {
-            printf("%s\n1. Jogo da Velha (enter)%s\n", fundo, resetar);
+            printf("%s1. Jogo da Velha (enter)%s\n", fundo, resetar);
             printf("%s2. Jogo de dados%s\n", texto, resetar);
             printf("%s3. Configurações%s\n", texto, resetar);
-            printf("%s4. Sair%s\n", texto, resetar);
+            printf("%s4. Placar de jogadores%s\n", texto, resetar);
+            printf("%s5. Sair%s\n", texto, resetar);
             printf("%sEscolha uma opção: %s", texto, resetar);
         }
         
         if (opcao == 2)
         {
-            printf("%s\n1. Jogo da Velha%s\n", texto, resetar);
+            printf("%s1. Jogo da Velha%s\n", texto, resetar);
             printf("%s2. Jogo de dados (enter)%s\n", fundo, resetar);
             printf("%s3. Configurações%s\n", texto, resetar);
-            printf("%s4. Sair%s\n", texto, resetar);
+            printf("%s4. Placar de jogadores%s\n", texto, resetar);
+            printf("%s5. Sair%s\n", texto, resetar);
             printf("%sEscolha uma opção: %s", texto, resetar);
         }
 
         if (opcao == 3)
         {
-            printf("%s\n1. Jogo da Velha%s\n", texto, resetar);
+            printf("%s1. Jogo da Velha%s\n", texto, resetar);
             printf("%s2. Jogo de dados%s\n", texto, resetar);
             printf("%s3. Configurações (enter)%s\n", fundo, resetar);
-            printf("%s4. Sair%s\n", texto, resetar);
+            printf("%s4. Placar de jogadores%s\n", texto, resetar);
+            printf("%s5. Sair%s\n", texto, resetar);
             printf("%sEscolha uma opção: %s", texto, resetar);
         }
 
         if (opcao == 4)
         {
-            printf("%s\n1. Jogo da Velha%s\n", texto, resetar);
+            printf("%s1. Jogo da Velha%s\n", texto, resetar);
             printf("%s2. Jogo de dados%s\n", texto, resetar);
             printf("%s3. Configurações%s\n", texto, resetar);
-            printf("%s4. Sair (enter)%s\n", fundo, resetar);
+            printf("%s4. Placar de jogadores (enter)%s\n", fundo, resetar);
+            printf("%s5. Sair%s\n", texto, resetar);
+            printf("%sEscolha uma opção: %s", texto, resetar);
+        }
+
+        if (opcao == 5)
+        {
+            printf("%s1. Jogo da Velha%s\n", texto, resetar);
+            printf("%s2. Jogo de dados%s\n", texto, resetar);
+            printf("%s3. Configurações%s\n", texto, resetar);
+            printf("%s4. Placar de jogadores%s\n", texto, resetar);
+            printf("%s5. Sair (enter)%s\n", fundo, resetar);
             printf("%sEscolha uma opção: %s", texto, resetar);
         }
 
@@ -71,7 +87,7 @@ int Menu() {
             break;
         else{
             tecla_int = tecla_char - '0';
-            if (tecla_int >= 1 && tecla_int <= 4)
+            if (tecla_int >= 1 && tecla_int <= 5)
             {
                 opcao = tecla_int;
                 getchar();
@@ -83,16 +99,15 @@ int Menu() {
             }
         }
     }
-
     return opcao;
 }
 
-int main() {
+int main() 
+{
     system("cls || clear");
 
     GameHouse();
     int opcao = Menu();
-
 
     if (opcao == 1)
         system(".\\Jogos\\jogo_da_velha.exe");
@@ -101,6 +116,8 @@ int main() {
     else if (opcao == 3)
         system(".\\configuracoes\\configurar_cores.exe");
     else if (opcao == 4)
+        system(".\\placar_jogadores\\placar_jogadores.exe");
+    else if (opcao == 5)
         return 0;
 
 }

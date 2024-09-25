@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
 #include <windows.h>
 #include "..\configuracoes\configuracoes.h"
 
@@ -17,13 +16,11 @@ void JogoDeDados()
     printf("\e[15C|[====================================================================]|  \n\n\n");
 }
 
-
 void OpcoesDoJogo(int numero_de_dados, int aposta) 
 {
     printf("jogando com %d dados\n", numero_de_dados);
     printf("Numero apostado: %d\n\n", aposta);
 }
-
 
 int Preparacao(int *numero_de_dados, int *aposta)
 {
@@ -38,7 +35,6 @@ int Preparacao(int *numero_de_dados, int *aposta)
     ApagarLinha(5);
 
 }
-
 
 int JogarDados(int  numero_de_dados, int aposta)
 {
@@ -81,11 +77,11 @@ int main() {
         OpcoesDoJogo(numero_de_dados, aposta);
         pontuacao += JogarDados(numero_de_dados, aposta);
         LimparBuffer();
-        resposta = JogarNovamante();
+        resposta = JogarNovamente();
     }
 
-    //resposta = EscolherRegistrar(pontuacao);
-    //if (resposta == 1) RegistrarPlacar(pontuacao, 'D');
+    resposta = EscolherRegistrar(pontuacao);
+    RegistrarPlacar(resposta, pontuacao, "Jogo de dados");
 
     printf(">>> Retornando ao menu\n");
     Sleep(3000);
