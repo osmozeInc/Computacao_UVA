@@ -53,7 +53,7 @@ int JogarDados(int  numero_de_dados, int aposta)
 
         srand(time(NULL));
         int dado = rand() % (numero_de_dados * 6) + 1;
-        printf("\n\nO resultado foi %d\n", dado);
+        printf("\nO resultado foi %d\n", dado);
         if (dado == aposta) 
         {
             printf(">>> VOCÊ GANHOU! <<<");
@@ -68,23 +68,23 @@ int JogarDados(int  numero_de_dados, int aposta)
 
 
 int main() {
-
-    int numero_de_dados = 0;
-    int aposta = 0;
     int pontuacao = 0;
+    int resposta = 1;
 
-    while (1)
+    while (resposta != 2)
     {
+        int numero_de_dados = 0;
+        int aposta = 0;
+
         JogoDeDados();
         Preparacao(&numero_de_dados, &aposta);
         OpcoesDoJogo(numero_de_dados, aposta);
         pontuacao += JogarDados(numero_de_dados, aposta);
         LimparBuffer();
-        int resposta = JogarNovamante();
-        if (resposta == 2) break;
+        resposta = JogarNovamante();
     }
 
-    int resposta = EscolherRegistrar(pontuacao);
+    //resposta = EscolherRegistrar(pontuacao);
     //if (resposta == 1) RegistrarPlacar(pontuacao, 'D');
 
     printf(">>> Retornando ao menu\n");

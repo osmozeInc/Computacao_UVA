@@ -138,7 +138,7 @@ const char* CorDeDestaqueMenu()
     } else if (conteudo[6] == '5') {
         return "\033[45m"; // Roxo
     } else {
-        return "\033[0m"; // Reset ou cor padrão
+        return "\033[0m"; // cor padrão
     }
 } 
 

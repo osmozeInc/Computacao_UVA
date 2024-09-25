@@ -214,8 +214,6 @@ int main() {
         adversario = DefinirAdversario(jogador);
         pontuacao += Jogar(jogador, adversario);
         LimparBuffer();
-        int resposta = JogarNovamante();
-        if (resposta == 2) break;
     }
 
     int resposta = EscolherRegistrar(pontuacao);
