@@ -71,7 +71,6 @@ int main() {
     {
         int numero_de_dados = 0;
         int aposta = 0;
-
         JogoDeDados();
         Preparacao(&numero_de_dados, &aposta);
         OpcoesDoJogo(numero_de_dados, aposta);
@@ -80,11 +79,7 @@ int main() {
         resposta = JogarNovamente();
     }
 
-    resposta = EscolherRegistrar(pontuacao);
-    RegistrarPlacar(resposta, pontuacao, "Jogo de dados");
-
-    printf(">>> Retornando ao menu\n");
-    Sleep(3000);
+    Ranking(pontuacao, 2);
 
     system("game_house.exe");
 }

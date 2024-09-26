@@ -4,8 +4,7 @@
 void ApagarLinha();
 int JogarNovamente();
 void LimparBuffer();
-int EscolherRegistrar();
-void RegistrarPlacar();
+void Ranking();
 const char* CorDeDestaqueMenu();
 const char* CorDoTextoMenu();
 const char* CorDeDestaqueJogo();

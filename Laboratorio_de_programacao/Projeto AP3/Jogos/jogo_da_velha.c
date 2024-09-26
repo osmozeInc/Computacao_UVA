@@ -16,7 +16,6 @@ void JogoDaVelha()
     printf("\e[15C|[====================================================================]|  \n\n\n");
 }
 
-
 int OpcoesDoJogo() 
 {
     const char* fundo = CorDeDestaqueJogo();
@@ -65,7 +64,6 @@ int OpcoesDoJogo()
     if (opcao == 2) return 'O';
 }
 
-
 char DefinirAdversario(char jogador)
 {
         if (jogador == 'X') {
@@ -75,7 +73,6 @@ char DefinirAdversario(char jogador)
             return 'X';
         }
 }
-
 
 void RealizarJogada(char tabuleiro[3][3], char jogador_ou_adversario, int player)
 {
@@ -116,7 +113,6 @@ void RealizarJogada(char tabuleiro[3][3], char jogador_ou_adversario, int player
     }
 }
 
-
 int VerificarVitoria(char tabuleiro[3][3], char ganhador)
 {
     for (int i = 0; i < 3; i++)
@@ -148,7 +144,6 @@ int VerificarVitoria(char tabuleiro[3][3], char ganhador)
     return 2;
 }
 
-
 void DesenharJogo(char tabuleiro[3][3])
 {
     system("cls || clear");
@@ -160,7 +155,6 @@ void DesenharJogo(char tabuleiro[3][3])
         printf("\e[15C 3 %c | %c | %c \n\n", tabuleiro[2][0], tabuleiro[2][1], tabuleiro[2][2]);
 
 }
-
 
 int Jogar(char jogador, char adversario)
 {
@@ -218,11 +212,7 @@ int main() {
         resposta = JogarNovamente();
     }
 
-    EscolherRegistrar(pontuacao);
-    //if (resposta == 1) RegistrarPlacar(pontuacao, 'V');
-
-    printf(">>> Retornando ao menu\n");
-    Sleep(3000);
+    Ranking(pontuacao, 1);
 
     system("game_house.exe");
 }

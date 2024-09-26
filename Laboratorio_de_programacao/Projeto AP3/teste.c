@@ -3,9 +3,9 @@
 #include <windows.h>
 #include <string.h>
 #include "configuracoes\configuracoes.h"
+#include "ranking\ranking.h"
 
 int main() {
     
-int y = JogarNovamante();
-printf("%d", y);
+Config_UsuarioSenha("teste", "12345678");
 }

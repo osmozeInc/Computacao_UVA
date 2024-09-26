@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include "configuracoes.h"
+#include "../ranking/ranking.h"
 
 void ApagarLinha(int numero_de_linhas) 
 {
@@ -9,6 +10,12 @@ void ApagarLinha(int numero_de_linhas)
     {
         printf("\e[A\e[K");
     }
+}
+
+void Ranking(int pontuacao, int jogo)
+{
+    int resposta = Config_EscolherRegistrar(pontuacao);
+    Config_RegistrarPlacar(resposta, pontuacao, jogo);
 }
 
 int JogarNovamente()
@@ -65,96 +72,6 @@ void LimparBuffer()
     int c;
     // Lê até encontrar um caractere de nova linha ou EOF
     while ((c = getchar()) != '\n' && c != EOF);
-}
-
-int EscolherRegistrar(int pontuacao)
-{
-    const char* fundo = CorDeDestaqueMenu();
-    const char* texto = CorDoTextoMenu();
-    const char* resetar = reset();
-    char tecla_char;
-    int tecla_int;
-    int opcao = 1;
-
-    system("cls || clear");
-    printf("\n\nSua pontuação foi de %d pontos\n", pontuacao);
-    printf("Quer registrar o placar?\n\n");
-    
-    while (1)
-    {
-        if (opcao == 1)
-        {
-            printf("%s1. Registrar como anônimo%s\n", fundo, resetar);
-            printf("%s2. Registrar como novo jogador%s\n", texto, resetar);
-            printf("%s3. Registrar como jogador existente%s\n", texto, resetar);
-            printf("%s4. Não registrar%s\n", texto, resetar);
-            printf("%sEscolha uma opção:  %s", texto, resetar);
-        }
-
-        else if (opcao == 2)
-        {
-            printf("%s1. Registrar como anônimo%s\n", texto, resetar);
-            printf("%s2. Registrar como novo jogador%s\n", fundo, resetar);
-            printf("%s3. Registrar como jogador existente%s\n", texto, resetar);
-            printf("%s4. Não registrar%s\n", texto, resetar);
-            printf("%sEscolha uma opção:  %s", texto, resetar);
-        }
-
-        else if (opcao == 3)
-        {
-            printf("%s1. Registrar como anônimo%s\n", texto, resetar);
-            printf("%s2. Registrar como novo jogador%s\n", texto, resetar);
-            printf("%s3. Registrar como jogador existente%s\n", fundo, resetar);
-            printf("%s4. Não registrar%s\n", texto, resetar);
-            printf("%sEscolha uma opção:  %s", texto, resetar);
-        }
-
-        else if (opcao == 4)
-        {
-            printf("%s1. Registrar como anônimo%s\n", texto, resetar);
-            printf("%s2. Registrar como novo jogador%s\n", texto, resetar);
-            printf("%s3. Registrar como jogador existente%s\n", texto, resetar);
-            printf("%s4. Não registrar%s\n", fundo, resetar);
-            printf("%sEscolha uma opção:  %s", texto, resetar);
-        }
-
-        tecla_char = getchar();
-        if (tecla_char == '\n')
-            break;
-        else{
-            tecla_int = tecla_char - '0';
-            if (tecla_int >= 1 && tecla_int <= 4){
-                opcao = tecla_int;
-                getchar();
-                printf("\n");
-            }
-            else{
-                printf("\n");
-                getchar();
-            }
-        }
-        ApagarLinha(6);
-    }
-
-    return opcao;
-}
-
-void RegistrarPlacar(int resposta)
-{
-    if (resposta == 1) {
-        // Registrar como anônimo
-    }
-    else if (resposta == 2) {
-        // Registrar como novo jogador
-    }
-    else if (resposta == 3) {
-        // Registrar como jogador existente
-    }
-    else if (resposta == 4) {
-        // Não registrar
-    }
-    printf("\nRegistro de placar será aqui.\npressione enter para continuar...");
-    scanf("");
 }
 
 const char* CorDeDestaqueMenu()
