@@ -16,6 +16,37 @@ void CriarArquivo()
         fclose(arquivo);
 }
 
+void SubistituirPontuacao(char nome[11], char senha[9])
+{
+    // aqui vai ser substituido a pontuação do usuário
+    printf("Usuário encontrado. Pontuação substituída.\n");
+}
+
+void BuscarUsuario(char nome[11], char senha[9])
+{
+    LimparBuffer();
+    char linha_arquivo[25]; 
+    char linha_procurada[25];
+    sprintf(linha_procurada, "%s,%s", nome, senha);
+
+    FILE *arquivo = fopen("ranking/usuario_senha.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    while (fgets(linha_arquivo, sizeof(linha_arquivo), arquivo) != NULL)
+    {
+        if (strstr(linha_arquivo, linha_procurada) != NULL)
+        {
+            SubistituirPontuacao(nome, senha);
+            break;
+        }
+    }
+    if (feof(arquivo)) printf("Fim do arquivo.\n");
+}
+
 int Config_EscolherRegistrar(int pontuacao)
 {
     const char* fundo = CorDeDestaqueMenu();
@@ -26,8 +57,8 @@ int Config_EscolherRegistrar(int pontuacao)
     int opcao = 1;
 
     system("cls || clear");
-    printf("\n\nSua pontuação foi de %d pontos\n", pontuacao);
-    printf("Quer registrar o placar?\n\n");
+    printf("\n%sSua pontuação foi de %d pontos%s\n",texto, pontuacao, resetar);
+    printf("%sQuer registrar o placar?%s\n\n", texto, resetar);
     
     while (1)
     {
@@ -90,6 +121,10 @@ int Config_EscolherRegistrar(int pontuacao)
 
 void Config_RegistrarPlacar(int resposta, int pontuacao, int jogo)
 {
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+
     if (resposta == 1) // Registrar como anônimo
     {
         char nome[8] = "Anônimo";
@@ -101,20 +136,34 @@ void Config_RegistrarPlacar(int resposta, int pontuacao, int jogo)
     {
         char nome[11], senha[9];
 
-        printf("Escolha seu nickname: ");
+        printf("\n%sEscolha seu nickname: ", texto);
         scanf("%10s", nome);
-        printf("\n Escolha uma senha: ");
+        printf("\nEscolha uma senha: %s", resetar);
         scanf("%8s", senha);
 
         if (jogo == 1) Config_RegistrarInformacoesJV(nome, pontuacao, "Jogo da velha");
         if (jogo == 2) Config_RegistrarInformacoesJD(nome, pontuacao, "Jogo de dados");
         Config_UsuarioSenha(nome, senha);
     }
-    else if (resposta == 3) {
-        // Registrar como jogador existente
+
+    else if (resposta == 3) // Registrar como jogador existente
+    {
+        char nome[11], senha[9];
+
+        printf("\n%sQual seu nickname: ", texto);
+        scanf("%10s", nome);
+        printf("\nQual sua senha: ");
+        scanf("%8s", senha);
+
+        BuscarUsuario(nome, senha);
+
+        int resposta;
+        scanf("%d", &resposta);
     }
-    else if (resposta == 4) {
-        // Não registrar
+
+    else if (resposta == 4) // Não registrar
+    {
+        // placar não será registrado
     }
 }
 
@@ -136,6 +185,8 @@ void Config_RegistrarInformacoesJD(char nome[11], int pontuacao, char jogo[15])
 void Config_UsuarioSenha(char nome[11], char senha[9])
 {
     FILE *arquivo = fopen("ranking/usuario_senha.txt", "a");
-    fprintf(arquivo, "%s, %s\n", nome, senha);
+    fprintf(arquivo, "%s,%s\n", nome, senha);
     fclose(arquivo);
 }
+
+
