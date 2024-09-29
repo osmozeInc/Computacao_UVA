@@ -13,6 +13,7 @@ int main(){
         Sleep(100);
     }
     
+    // compila todos os arquivos com as dependencias e executa o programa
     system("gcc configuracoes/configuracoes.c ranking/ranking.c game_house.c -o game_house.exe");
     system("gcc configuracoes/configuracoes.c ranking/ranking.c Jogos/jogo_da_velha.c -o Jogos/jogo_da_velha.exe");
     system("gcc configuracoes/configuracoes.c ranking/ranking.c Jogos/jogo_de_dados.c -o Jogos/jogo_de_dados.exe");

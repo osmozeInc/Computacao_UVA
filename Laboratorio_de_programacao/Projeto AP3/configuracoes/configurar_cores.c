@@ -295,13 +295,12 @@ int Menu() {
 
 int main() {
 
-    system("cls");
     while (1)
     {
         int opcao;
         opcao = Menu();
-        if (opcao == 1)  CorDeDestaqueMenuConfig();
-        if (opcao == 2)  CorDoTextoMenuConfig();
+        if (opcao == 1)  CorDeDestaqueMenuConfig(); // configura qual a cor de seleção de opcção dos menus
+        if (opcao == 2)  CorDoTextoMenuConfig();  // configura qual a cor do texto dos menus
         if (opcao == 3) // Sair
         {
             char mensagem[22] = "Retornando ao menu...";

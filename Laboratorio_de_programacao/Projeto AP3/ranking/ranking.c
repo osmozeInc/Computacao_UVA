@@ -5,6 +5,14 @@
 #include "../configuracoes/configuracoes.h"
 #include "./ranking.h"
 
+
+typedef struct {
+    char jogador[15];
+    int pontuacao;
+    char jogo[15];
+} Registro;
+
+
 void SubistituirPontuacao(char nome[11], int jogo, int pontuacao)
 {
     char linha_nova[50], nome_do_arquivo[25];
@@ -208,18 +216,99 @@ void Config_RegistrarPlacar(int resposta, int pontuacao, int jogo)
     }
 }
 
-void Config_RegistrarInformacoesJV(char nome[11], int pontuacao, char jogo[15])
-{
-    FILE *arquivo = fopen("./ranking/rankingJV.txt", "a+");
-    fprintf(arquivo, "%-15s %-10d %s\n", nome, pontuacao, jogo);
+void Config_RegistrarInformacoesJV(char nome[11], int pontuacao, char jogo[15]) {
+    FILE *arquivo = fopen("./ranking/rankingJV.txt", "r");
+
+    if (arquivo == NULL) {
+        arquivo = fopen("./ranking/rankingJV.txt", "w");
+        fclose(arquivo);
+        arquivo = fopen("./ranking/rankingJV.txt", "r");
+    }
+
+    Registro registros[100];
+    int totalRegistros = 0;
+    char linha[50];
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL && totalRegistros < 100) {
+        sscanf(linha, "%14s %d %[^\n]", registros[totalRegistros].jogador, &registros[totalRegistros].pontuacao, registros[totalRegistros].jogo);
+        totalRegistros++;
+    }
+    fclose(arquivo);
+
+    Registro novoRegistro;
+    strncpy(novoRegistro.jogador, nome, 14);
+    novoRegistro.pontuacao = pontuacao;
+    strncpy(novoRegistro.jogo, jogo, 14);
+
+    int posicaoInserir = totalRegistros;
+    for (int i = 0; i < totalRegistros; i++) {
+        if (registros[i].pontuacao < pontuacao) {
+            posicaoInserir = i;
+            break;
+        }
+    }
+
+    arquivo = fopen("./ranking/rankingJV.txt", "w");
+
+    for (int i = 0; i < totalRegistros + 1; i++) {
+        if (i == posicaoInserir) {
+            fprintf(arquivo, "%-15s %-10d %s\n", novoRegistro.jogador, novoRegistro.pontuacao, novoRegistro.jogo);
+        }
+        if (i < totalRegistros) {
+            fprintf(arquivo, "%-15s %-10d %s\n", registros[i].jogador, registros[i].pontuacao, registros[i].jogo);
+        }
+    }
+
     fclose(arquivo);
 }
 
-void Config_RegistrarInformacoesJD(char nome[11], int pontuacao, char jogo[15])
-{
+void Config_RegistrarInformacoesJD(char nome[11], int pontuacao, char jogo[15]) {
+    FILE *arquivo = fopen("./ranking/rankingJD.txt", "r");
 
-    FILE *arquivo = fopen("./ranking/rankingJD.txt", "a+");
-    fprintf(arquivo, "%-15s %-10d %s\n", nome, pontuacao, jogo);
+    if (arquivo == NULL) {
+        arquivo = fopen("./ranking/rankingJD.txt", "w");
+        fclose(arquivo);
+        arquivo = fopen("./ranking/rankingJD.txt", "r");
+    }
+
+    Registro registros[100];
+    int totalRegistros = 0;
+    char linha[50];
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL && totalRegistros < 100) {
+        if (strncmp(linha, "JOGADOR", 7) == 0 || linha[0] == '-') {
+            continue;
+        }
+        sscanf(linha, "%14s %d %[^\n]", registros[totalRegistros].jogador, &registros[totalRegistros].pontuacao, registros[totalRegistros].jogo);
+        totalRegistros++;
+    }
+    fclose(arquivo);
+
+    Registro novoRegistro;
+    strncpy(novoRegistro.jogador, nome, 14);
+    novoRegistro.pontuacao = pontuacao;
+    strncpy(novoRegistro.jogo, jogo, 49); 
+
+    // Encontrar a posição correta para inserir a nova linha
+    int posicaoInserir = totalRegistros; // Se não encontrar posição, será inserido no final
+    for (int i = 0; i < totalRegistros; i++) {
+        if (registros[i].pontuacao < pontuacao) {
+            posicaoInserir = i;
+            break;
+        }
+    }
+
+    arquivo = fopen("./ranking/rankingJD.txt", "w");
+
+    for (int i = 0; i < totalRegistros + 1; i++) {
+        if (i == posicaoInserir) {
+            fprintf(arquivo, "%-15s %-10d %s\n", novoRegistro.jogador, novoRegistro.pontuacao, novoRegistro.jogo);
+        }
+        if (i < totalRegistros) {
+            fprintf(arquivo, "%-15s %-10d %s\n", registros[i].jogador, registros[i].pontuacao, registros[i].jogo);
+        }
+    }
+
     fclose(arquivo);
 }
 

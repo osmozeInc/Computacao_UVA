@@ -4,6 +4,9 @@
 #include "configuracoes.h"
 #include "../ranking/ranking.h"
 
+// Arquivos com as principais funções do jogo
+// funções que se repetem em varios arquivos ou configuram o sistema
+
 void ApagarLinha(int numero_de_linhas) 
 {
     for (int i = 0; i < numero_de_linhas; i++)

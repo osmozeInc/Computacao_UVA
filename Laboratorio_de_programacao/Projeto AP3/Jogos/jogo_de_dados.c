@@ -82,13 +82,13 @@ int main() {
     {
         int numero_de_dados = 0;
         int aposta = 0;
-        JogoDeDados();
-        Preparacao(&numero_de_dados, &aposta);
-        OpcoesDoJogo(numero_de_dados, aposta);
-        pontuacao += JogarDados(numero_de_dados, aposta);
+        JogoDeDados(); // cabeçalho do jogo
+        Preparacao(&numero_de_dados, &aposta); // define as caracteristicas do jogo (quantidade de dados e aposta)
+        OpcoesDoJogo(numero_de_dados, aposta); // faz parte do layout do jogo
+        pontuacao += JogarDados(numero_de_dados, aposta); 
         LimparBuffer();
-        resposta = JogarNovamente();
+        resposta = JogarNovamente(); // se não, retorna 2
     }
-    if (pontuacao > 0) Ranking(pontuacao, 2);
+    if (pontuacao > 0) Ranking(pontuacao, 2); // registro do placar
 
 }

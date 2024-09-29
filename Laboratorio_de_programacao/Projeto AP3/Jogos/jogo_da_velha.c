@@ -208,9 +208,9 @@ int main() {
 
     while (resposta != 2)
     {
-        JogoDaVelha();
-        jogador = OpcoesDoJogo();
-        adversario = DefinirAdversario(jogador);
+        JogoDaVelha(); // cabeçalho do jogo
+        jogador = OpcoesDoJogo(); // seleciona o icone do jogador
+        adversario = DefinirAdversario(jogador); // define o icone do adversario
         pontuacao += Jogar(jogador, adversario);
         LimparBuffer();
         resposta = JogarNovamente();

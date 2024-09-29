@@ -4,14 +4,14 @@
 #include "configuracoes\configuracoes.h"
 
 
-void GameHouse() 
+void GameHouse()
 {
     const char* resetar = reset();
     system("cls || clear");
     printf("%s", resetar);
     printf("  _____                          _    _                                 \n");
     printf(" / ____|                        | |  | |                                \n");
-    printf("| |  __  __ _ _ __ ____  ___    | |__| | ___  _   _  ___  ___           \n");
+    printf("| |  __  __ _ _ __ ___   ___    | |__| | ___  _   _  ___  ___           \n");
     printf("| | |_ |/ _` | '_ ` _ \\ / _ \\   |  __  |/ _ \\| | | |/ __|/ _ \\      \n");
     printf("| |__| | (_| | | | | | |  __/   | |  | | (_) | |_| |\\__ \\  __/        \n");
     printf(" \\_____/\\__,_|_| |_| |_|\\___|   |_|  |_|\\___/ \\___/ |___/\\___|    \n");
@@ -106,10 +106,10 @@ int Menu()
 
 int main() 
 {
-    while (1)
+    while (1) // uso do while (1) para evitar várias funções abertas no mesmo momento
     {
         system("cls || clear");
-        GameHouse();
+        GameHouse(); // nome do sistema
         int opcao = Menu();
         if (opcao == 1) system(".\\Jogos\\jogo_da_velha.exe");
 

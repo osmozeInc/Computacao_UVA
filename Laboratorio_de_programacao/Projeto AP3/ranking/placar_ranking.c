@@ -99,7 +99,7 @@ int Menu()
     return opcao;
 }
 
-int Confirmacao() 
+int Confirmacao() // confitma se eu realmente quero fazer uma ação
 {
     const char* fundo = CorDeDestaqueMenu();
     const char* texto = CorDoTextoMenu();
@@ -148,7 +148,7 @@ int Confirmacao()
     return opcao;
 }
 
-void MostrarRanking()
+void MostrarRanking() // abre os dois arquivos e mostra o ranking no terminal
 {
     const char* resetar = reset();
     system("cls || clear");
@@ -219,6 +219,7 @@ void ExcluirRanking()
     {
         remove("./ranzing/rankingJV.txt");
         remove("./ranzing/rankingJD.txt");
+        remove("./ranzing/usuario_senha.txt");
         printf("Ranking excluído com sucesso!\n");
     }
     else
@@ -237,9 +238,9 @@ int main() {
         resposta = Menu();
 
         if (resposta == 1) MostrarRanking();
-        else if (resposta == 2) ResetarRankingJV();
-        else if (resposta == 3) ResetarRankingJD();
-        else if (resposta == 4) ExcluirRanking();
-        else if (resposta == 5) break;
+        else if (resposta == 2) ResetarRankingJV(); // reabre o arquivo modo escrita subistindo o conteudo anterior
+        else if (resposta == 3) ResetarRankingJD(); // reabre o arquivo modo escrita subistindo o conteudo anterior
+        else if (resposta == 4) ExcluirRanking(); // exclui os dois arquivos que guardam os rankings
+        else if (resposta == 5) break; // retorna ao menu principal
     }
 }
