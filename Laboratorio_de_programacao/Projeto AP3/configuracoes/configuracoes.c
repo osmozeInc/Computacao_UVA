@@ -36,16 +36,16 @@ int JogarNovamente()
         {
             printf("%sDeseja jogar novamente? %s\n", texto, resetar);
             printf("%s1. Sim (enter)%s\n", fundo, resetar);
-            printf("%s2. Não%s\n", texto, resetar);
-            printf("%s>>> %s", texto, resetar);
+            printf("%s2. Não\n", texto);
+            printf(">>> ");
         }
 
         else if (opcao == 2)
         {
-            printf("%sDeseja jogar novamente? %s\n", texto, resetar);
-            printf("%s1. Sim%s\n", texto, resetar);
+            printf("%sDeseja jogar novamente?\n", texto);
+            printf("1. Sim%s\n", resetar);
             printf("%s2. Não (enter)%s\n", fundo, resetar);
-            printf("%s>>> %s", texto, resetar);
+            printf("%s>>> ", texto);
         }
 
         tecla_char = getchar();
@@ -58,12 +58,11 @@ int JogarNovamente()
                 printf("\n");
             }
             else{
-                printf("\n");
                 getchar();
+                printf("\n");
             }
         }
     }
-
     return opcao;
 }
 
@@ -102,52 +101,6 @@ const char* CorDoTextoMenu()
     char conteudo[10];
 
     FILE *arquivo = fopen("configuracoes/texto_do_menu.txt", "r");
-    fgets(conteudo, 9, arquivo);
-    fclose(arquivo);
-
-    if (conteudo[6] == '0') {
-        return "\033[90m"; // Cinza
-    } else if (conteudo[6] == '2') {
-        return "\033[32m"; // Verde
-    } else if (conteudo[6] == '6') {
-        return "\033[36m"; // Ciano
-    } else if (conteudo[6] == '3') {
-        return "\033[33m"; // Amarelo
-    } else if (conteudo[6] == '1') {
-        return "\033[31m"; // Vermelho
-    } else {
-        return "\033[0m"; // Reset ou cor padrão
-    }
-}
-
-const char* CorDeDestaqueJogo()
-{
-    char conteudo[10];
-
-    FILE *arquivo = fopen("configuracoes/destaque_do_jogo.txt", "r");
-    fgets(conteudo, 9, arquivo);
-    fclose(arquivo);
-
-    if (conteudo[6] == '0') {
-        return "\033[90m"; // Cinza
-    } else if (conteudo[6] == '2') {
-        return "\033[32m"; // Verde
-    } else if (conteudo[6] == '6') {
-        return "\033[36m"; // Ciano
-    } else if (conteudo[6] == '3') {
-        return "\033[33m"; // Amarelo
-    } else if (conteudo[6] == '1') {
-        return "\033[31m"; // Vermelho
-    } else {
-        return "\033[0m"; // Reset ou cor padrão
-    }
-}
-
-const char* CorDoTextoJogo()
-{
-    char conteudo[10];
-
-    FILE *arquivo = fopen("configuracoes/texto_do_jogo.txt", "r");
     fgets(conteudo, 9, arquivo);
     fclose(arquivo);
 

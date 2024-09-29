@@ -5,19 +5,19 @@
 int main(){
     system("chcp 65001");
     system("cls || clear");
+    char mensagem[22] = "iniciando programa...";
 
-    printf("iniciando programa");
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 22; i++)
     {
-        printf(".");
-        Sleep(800);
+        printf("%c", mensagem[i]);
+        Sleep(100);
     }
     
     system("gcc configuracoes/configuracoes.c ranking/ranking.c game_house.c -o game_house.exe");
-    system("gcc configuracoes/configuracoes.c ranking/ranking.c configuracoes/configurar_cores.c -o configuracoes/configurar_cores.exe");
     system("gcc configuracoes/configuracoes.c ranking/ranking.c Jogos/jogo_da_velha.c -o Jogos/jogo_da_velha.exe");
     system("gcc configuracoes/configuracoes.c ranking/ranking.c Jogos/jogo_de_dados.c -o Jogos/jogo_de_dados.exe");
+    system("gcc configuracoes/configuracoes.c ranking/ranking.c configuracoes/configurar_cores.c -o configuracoes/configurar_cores.exe");
+    system("gcc configuracoes/configuracoes.c ranking/ranking.c ranking/placar_ranking.c -o ranking/placar_ranking.exe");
 
-    printf("\nprograma iniciado com sucesso!\n");
     system("game_house.exe");
 }

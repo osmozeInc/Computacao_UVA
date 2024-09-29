@@ -7,8 +7,9 @@
 
 void JogoDaVelha() 
 {
+    const char* resetar = reset();
     system("cls || clear");
-    printf("\n");
+    printf("%s", resetar);
     printf("\e[15C|[====================================================================]|  \n");
     printf("\e[15C|[                                                                    ]|  \n");
     printf("\e[15C|[                        JOGO DA VELHA                               ]|  \n");
@@ -18,29 +19,29 @@ void JogoDaVelha()
 
 int OpcoesDoJogo() 
 {
-    const char* fundo = CorDeDestaqueJogo();
-    const char* texto = CorDoTextoJogo();
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
     char tecla_char;
     int tecla_int;
     int opcao = 1;
 
-    printf("Jogador 1: \'X\' ou \'O\' ?\n\n\n\n\n\n");    
+    printf("%sJogador 1: \'X\' ou \'O\' ?\n\n\n\n\n\n", texto);    
     while (1)
     {
         ApagarLinha(4);
         if (opcao == 1)
         {
             printf("%s1. X (enter)%s\n", fundo, resetar);
-            printf("%s2. O%s\n", texto, resetar);
-            printf("%s>>>: %s", texto, resetar);
+            printf("%s2. O\n", texto);
+            printf(">>> ");
         }
 
         else if (opcao == 2)
         {
             printf("%s1. X%s\n", texto, resetar);
             printf("%s2. O (enter)%s\n", fundo, resetar);
-            printf("%s>>>: %s", texto, resetar);
+            printf("%s>>> ", texto);
         }
 
         tecla_char = getchar();
@@ -76,8 +77,8 @@ char DefinirAdversario(char jogador)
 
 void RealizarJogada(char tabuleiro[3][3], char jogador_ou_adversario, int player)
 {
-    const char* fundo = CorDeDestaqueJogo();
-    const char* texto = CorDoTextoJogo();
+    const char* fundo = CorDeDestaqueMenu();
+    const char* texto = CorDoTextoMenu();
     const char* resetar = reset();
     int coluna, linha;
 
@@ -87,7 +88,7 @@ void RealizarJogada(char tabuleiro[3][3], char jogador_ou_adversario, int player
     {
         while (1)
         {
-            printf("%sLinha: %s", texto, resetar);
+            printf("%sLinha: ", texto);
             scanf("%d", &linha);
             if (linha < 1 || linha > 3) printf("\e[A\e[K");
             else break;
@@ -95,7 +96,7 @@ void RealizarJogada(char tabuleiro[3][3], char jogador_ou_adversario, int player
 
         while (1)
         {
-            printf("%sColuna: %s", texto, resetar);
+            printf("%sColuna: ", texto);
             scanf("%d", &coluna);
             if (coluna < 1 || coluna > 3) printf("\e[A\e[K");
             else break;
@@ -146,13 +147,16 @@ int VerificarVitoria(char tabuleiro[3][3], char ganhador)
 
 void DesenharJogo(char tabuleiro[3][3])
 {
+    const char* resetar = reset();
+
     system("cls || clear");
-        printf("\e[15C   1   2   3\n");
-        printf("\e[15C 1 %c | %c | %c \n", tabuleiro[0][0], tabuleiro[0][1], tabuleiro[0][2]);
-        printf("\e[15C  ---|---|---\n");
-        printf("\e[15C 2 %c | %c | %c \n", tabuleiro[1][0], tabuleiro[1][1], tabuleiro[1][2]);
-        printf("\e[15C  ---|---|---\n");
-        printf("\e[15C 3 %c | %c | %c \n\n", tabuleiro[2][0], tabuleiro[2][1], tabuleiro[2][2]);
+    printf("%s", resetar);
+    printf("\e[15C   1   2   3\n");
+    printf("\e[15C 1 %c | %c | %c \n", tabuleiro[0][0], tabuleiro[0][1], tabuleiro[0][2]);
+    printf("\e[15C  ---|---|---\n");
+    printf("\e[15C 2 %c | %c | %c \n", tabuleiro[1][0], tabuleiro[1][1], tabuleiro[1][2]);
+    printf("\e[15C  ---|---|---\n");
+    printf("\e[15C 3 %c | %c | %c \n\n", tabuleiro[2][0], tabuleiro[2][1], tabuleiro[2][2]);
 
 }
 
@@ -212,7 +216,5 @@ int main() {
         resposta = JogarNovamente();
     }
 
-    Ranking(pontuacao, 1);
-
-    system("game_house.exe");
+    if (pontuacao > 0) Ranking(pontuacao, 1);
 }

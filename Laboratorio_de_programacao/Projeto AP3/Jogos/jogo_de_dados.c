@@ -7,7 +7,9 @@
 
 void JogoDeDados() 
 {
+    const char* resetar = reset();
     system("cls || clear");
+    printf("%s", resetar);
     printf("\e[15C|[====================================================================]|  \n");
     printf("\e[15C||                                                                    ]|  \n");
     printf("\e[15C||                              DADOS                                 ]|  \n");
@@ -18,19 +20,25 @@ void JogoDeDados()
 
 void OpcoesDoJogo(int numero_de_dados, int aposta) 
 {
-    printf("jogando com %d dados\n", numero_de_dados);
-    printf("Numero apostado: %d\n\n", aposta);
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+
+    printf("%sjogando com %d dados\n", texto, numero_de_dados);
+    printf("Numero apostado: %d%s\n\n", aposta, resetar);
 }
 
 int Preparacao(int *numero_de_dados, int *aposta)
 {
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
+
     OpcoesDoJogo(*numero_de_dados, *aposta);
-    printf("com quantos dados quer jogar? ");
+    printf("%scom quantos dados quer jogar? ", texto);
     scanf("%d", numero_de_dados);
     ApagarLinha(4);
     
     OpcoesDoJogo(*numero_de_dados, *aposta);
-    printf("faça sua aposta entre 1 e %d\n>>> ", *numero_de_dados * 6);
+    printf("%sfaça sua aposta entre 1 e %d\n>>> ", texto, *numero_de_dados * 6);
     scanf("%d", aposta);
     ApagarLinha(5);
 
@@ -38,28 +46,31 @@ int Preparacao(int *numero_de_dados, int *aposta)
 
 int JogarDados(int  numero_de_dados, int aposta)
 {
-        printf("jogando dados");
-        for (int i = 0; i < 3; i++)
-        {
-            printf(".");
-            Sleep(800);
-        }
-        printf("\e[K\n");
-        ApagarLinha(2);
+    const char* texto = CorDoTextoMenu();
+    const char* resetar = reset();
 
-        srand(time(NULL));
-        int dado = rand() % (numero_de_dados * 6) + 1;
-        printf("\nO resultado foi %d\n", dado);
-        if (dado == aposta) 
-        {
-            printf(">>> VOCÊ GANHOU! <<<");
-            return 100 * numero_de_dados;
-        }
-        else 
-        {
-            printf(">>> VOCÊ PERDEU! <<<");
-            return 0;
-        }
+    printf("%sjogando dados", texto);
+    for (int i = 0; i < 3; i++)
+    {
+        printf(".");
+        Sleep(800);
+    }
+    printf("\e[K\n");
+    ApagarLinha(2);
+
+    srand(time(NULL));
+    int dado = rand() % (numero_de_dados * 6) + 1;
+    printf("\n%sO resultado foi %d\n%s", texto, dado, resetar);
+    if (dado == aposta) 
+    {
+        printf("%s>>> VOCÊ GANHOU! <<<%s", texto, resetar);
+        return 25 * numero_de_dados;
+    }
+    else 
+    {
+        printf("%s>>> VOCÊ PERDEU! <<<%s", texto, resetar);
+        return 0;
+    }
 }
 
 
@@ -78,8 +89,6 @@ int main() {
         LimparBuffer();
         resposta = JogarNovamente();
     }
+    if (pontuacao > 0) Ranking(pontuacao, 2);
 
-    Ranking(pontuacao, 2);
-
-    system("game_house.exe");
 }

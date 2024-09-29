@@ -7,8 +7,6 @@ void LimparBuffer();
 void Ranking();
 const char* CorDeDestaqueMenu();
 const char* CorDoTextoMenu();
-const char* CorDeDestaqueJogo();
-const char* CorDoTextoJogo();
 const char* reset();
 
 #endif

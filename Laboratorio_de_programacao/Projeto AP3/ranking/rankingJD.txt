@@ -1,4 +1,2 @@
-caioamapep      0          Jogo de dados
-caio            0          Jogo de dados
-gus             0          Jogo de dados
-tuly            0          Jogo de dados
+Anônimo        25         Jogo de dados
+caio            50         Jogo de dados
