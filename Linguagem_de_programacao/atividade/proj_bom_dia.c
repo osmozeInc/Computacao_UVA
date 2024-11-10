@@ -14,24 +14,19 @@ void Traduzir_bomdia(char* argv[]) {
     else printf("Argumento invalido!\n");
 }
 
-void Outra_Opcao(char* argv[]) {
-    if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-        printf("Documentação:\n");
-        printf("Para traduzir bom dia digite: bomdia <numero>\n");
-    }
-
-    if (strcmp(argv[1], "--version"))
-    {
-        /* code */
-    }
-    
+void Exibir_Documentacao(char* argv[]) {
+    printf("Exibir documentação do projeto\n");
+    return;
 }
 
 void Ler_argumento(char* argv[]) {
     char* type;
-    
-    if (strlen(argv[1]) == 2 || strlen(argv[1]) == 4) Traduzir_bomdia(argv);
-    else Outra_Opcao(argv);
+    int num = strtol(argv[1], &type, 10);
+
+    if ((strcmp(type, "\0") == 0) || (len(argv[1]) == 4)) Traduzir_bomdia(argv);
+    else if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) printf("Versão 1.0.0");
+    else if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) Exibir_Documentacao(argv);
+    else printf("Argumento invalido!\n");
 }
 
 
