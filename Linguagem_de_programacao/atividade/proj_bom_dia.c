@@ -23,7 +23,7 @@ void Mensagem_de_Erro(int erro) {
            "--it ou -5 (idioma italiano)\n"
            "--co ou -6 (idioma coreano)\n"
            "--ja ou -7 (idioma japonês)\n"
-           "--ru ou -8 (idioma russo)\033[0m\n\n");
+           "--ru ou -8 (idioma russo)\033[0m\n");
 
 }
 
@@ -40,8 +40,51 @@ void Traduzir_bomdia(char* argv[]) {
 }
 
 void Exibir_Documentacao(char* argv[]) {
-    printf("Exibir documentação do projeto\n");
-    return;
+            /* 
+            Eu prefiria ler um arquivo readme.txt com a documentação e imprimir no terminal,
+            mas como devia ser enviado apenas o arquivo executável da atividade, escrevi a 
+            documentação completa no código abaixo.
+            */
+    printf("\nDOCUMENTAÇÃO DO SOFTWARE\n\n"
+"Descrição:\n"
+"Este programa exibe uma saudação \"Bom dia!\" em diversos idiomas, dependendo da opção fornecida como argumento na linha de comando.\n Ele também oferece a possibilidade de visualizar a versão do software ou consultar a documentação.\n\n"
+
+"Como Usar:\n"
+"Execute o programa seguido de uma das opções a seguir:\n\n"
+
+"    ./bomdia [opção]\n\n"
+
+"Opções Disponíveis:\n"
+"1. --help ou -h    : Exibe a documentação do software.\n"
+"2. --version ou -v : Exibe a versão do software.\n"
+"3. --pt ou -1      : Exibe \"Bom dia!\" em português.\n"
+"4. --en ou -2      : Exibe \"Good Morning!\" em inglês.\n"
+"5. --es ou -3      : Exibe \"Buen día!\" em espanhol.\n"
+"6. --fr ou -4      : Exibe \"Bonjour!\" em francês.\n"
+"7. --it ou -5      : Exibe \"Buongiorno!\" em italiano.\n"
+"8. --co ou -6      : Exibe \"좋은 아침이에요!\" (Bom dia! em coreano).\n"
+"9. --ja ou -7      : Exibe \"おはよう!\" (Bom dia! em japonês).\n"
+"10. --ru ou -8     : Exibe \"Доброе утро!\" (Bom dia! em russo).\n\n"
+
+"Mensagens de Erro:\n"
+"- Erro 1: Quantidade de argumentos insuficiente. Execute o programa seguido de uma opção válida.\n"
+"- Erro 2: Quantidade de argumentos inválida. Para mais informações, use ./bomdia -h.\n"
+"- Erro 3: Opção inválida. Para mais informações, use ./bomdia -h.\n\n"
+
+"Exemplo de Uso:\n"
+"1. Exibir mensagem em português:\n"
+"    ./bomdia -1\n\n"
+
+"2. Exibir versão do programa:\n"
+"    ./bomdia -v\n\n"
+
+"3. Exibir mensagem de ajuda:\n"
+"    ./bomdia -h\n\n"
+
+"Observações:\n"
+"- Se o programa for executado com mais de um argumento, ele exibirá uma mensagem de erro.\n"
+"- O programa aceita várias formas de entrada para os idiomas (por exemplo, --pt ou -1 para português).\n"
+    );
 }
 
 void Ler_argumento(char* argv[]) {
@@ -55,7 +98,7 @@ void Ler_argumento(char* argv[]) {
 
 
 int main(int argc,char* argv[]) {
-    system("chcp 65001 > null");
+    system("chcp 65001");
     system("cls");
     
 
@@ -63,5 +106,6 @@ int main(int argc,char* argv[]) {
     else if (argc == 2) Ler_argumento(argv);
     else Mensagem_de_Erro(2);
 
+    printf("\n\n");
     return 0;
 }
