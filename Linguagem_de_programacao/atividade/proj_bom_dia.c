@@ -89,9 +89,9 @@ void Exibir_Documentacao(char* argv[]) {
 
 void Ler_argumento(char* argv[]) {
     char* type;
-    int num = strtol(argv[1], &type, 10);
+    int num = atoi(argv[1]);
 
-    if ((strcmp(type, "\0") == 0) || (strlen(argv[1]) == 4)) Traduzir_bomdia(argv);
+    if ((num != 0) || (strlen(argv[1]) == 4)) Traduzir_bomdia(argv);
     else if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) printf("Versão 1.0.0");
     else if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) Exibir_Documentacao(argv);
     else Mensagem_de_Erro(3);}
