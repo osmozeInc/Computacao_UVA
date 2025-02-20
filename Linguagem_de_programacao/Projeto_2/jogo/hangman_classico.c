@@ -52,13 +52,18 @@ int VerificarLetra(){
     int houve_acerto = 0;
     char letra;
 
-    // O espaço antes do %c faz com que o scanf ignore espaços em branco e caracteres de nova linha (\n), garantindo que apenas a letra digitada seja capturada.
     printf("Digite uma letra: ");
     scanf(" %c", &letra);
 
-    // falta verificar se a letra ja foi digitada
+    for (int i = 0; i < strlen(letras_digitadas); i++) {
+        if (letra == letras_digitadas[i]) {
+            return 1;
+        }
+    }
+
     letras_digitadas[strlen(letras_digitadas)] = letra;
 
+    // troca o hifen pela letra correta
     for (int i = 0; i < strlen(palavra_secreta); i++)
     {
         if (letra == palavra_secreta[i])
