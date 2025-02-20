@@ -4,8 +4,11 @@
 #include <time.h>
 
 
+static char palavra_secreta[12];   // palavra que deve ser descorberta
+static char palavra_usuario[12];   // palavra que o jogador deve adivinhar
+static char letras_digitadas[15];
 
-void BuscarPalavra(char* palavra_do_jogo){
+void BuscarPalavra(){
     char palavra_aleatoria[12];
     int contador_linha = 0;
     srand(time(NULL));
@@ -27,35 +30,38 @@ void BuscarPalavra(char* palavra_do_jogo){
     }
 
     fclose(arquivo);
-    strcpy(palavra_do_jogo, palavra_aleatoria);
+    strcpy(palavra_secreta, palavra_aleatoria);
 }
 
-void DefinirTamanhoPalavra(char* palavra, char* palavra_usuario){
-    int tamanho = strlen(palavra);
+void DefinirTamanhoPalavra(){
+    int tamanho = strlen(palavra_secreta);
 
     for (int i = 0; i < tamanho; i++)
     {
-        if (palavra[i] != '\n')
+        if (palavra_secreta[i] != '\n')
             palavra_usuario[i] = '_';
         else{
             palavra_usuario[i] = '\0';
-            palavra[i] = '\0';
+            palavra_secreta[i] = '\0';
             // evita bugs que ocorriam
         }
     }
 }
 
-int VerificarLetra(char* palavra, char* palavra_usuario){
+int VerificarLetra(){
     int houve_acerto = 0;
     char letra;
 
     // O espaço antes do %c faz com que o scanf ignore espaços em branco e caracteres de nova linha (\n), garantindo que apenas a letra digitada seja capturada.
-    printf("Digite uma letra:");
+    printf("Digite uma letra: ");
     scanf(" %c", &letra);
 
-    for (int i = 0; i < strlen(palavra); i++)
+    // falta verificar se a letra ja foi digitada
+    letras_digitadas[strlen(letras_digitadas)] = letra;
+
+    for (int i = 0; i < strlen(palavra_secreta); i++)
     {
-        if (letra == palavra[i])
+        if (letra == palavra_secreta[i])
         {
             palavra_usuario[i] = letra;
             houve_acerto = 1;
@@ -65,7 +71,7 @@ int VerificarLetra(char* palavra, char* palavra_usuario){
     return houve_acerto;
 }
 
-void MensagemFinal(int tentativas, char* palavra){
+void MensagemFinal(int tentativas){
     system("cls");
 
     if (tentativas == 0)
@@ -73,26 +79,29 @@ void MensagemFinal(int tentativas, char* palavra){
     else
         printf("YOU WIN!\n\n");
 
-    printf("A Resposta era: %s", palavra);
+    printf("A Resposta era: %s", palavra_secreta);
 }
 
 
 int main(){
-    char palavra_secreta[12];   // palavra que deve ser descorberta
-    char palavra_usuario[12];   // palavra que o jogador deve adivinhar
-    char letras_digitadas[15];
     int tentativas = 5;
     int acerto = 0;
 
     // escolhe uma palavra aleatória e define o tanto de hifens na palavra
-    BuscarPalavra(palavra_secreta);
+    BuscarPalavra();
     DefinirTamanhoPalavra(palavra_secreta, palavra_usuario);
 
     for (int i = 0; i < tentativas; tentativas--)
     {
         system("cls");
-        printf( "Tentativas: %d", (tentativas));
-        printf( "Palavra: %s\n", (palavra_usuario));
+        printf("Tentativas: %d", (tentativas));
+
+        for (int i = 0; i < strlen(letras_digitadas); i++)
+        {
+            printf(" %c", letras_digitadas[i]);
+        }
+        
+        printf("\nPalavra: %s\n", (palavra_usuario));
         acerto = VerificarLetra(palavra_secreta, palavra_usuario);
 
         if (acerto == 1){
@@ -103,7 +112,7 @@ int main(){
         }
     }
 
-    MensagemFinal(tentativas, palavra_secreta);
+    MensagemFinal(tentativas);
     
     return 0;
 }
