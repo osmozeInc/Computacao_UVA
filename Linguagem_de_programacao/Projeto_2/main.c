@@ -20,7 +20,7 @@
 #include <windows.h>
 
 void Carregamento(){
-
+    system("cls");
     printf("\n\nIniciando Jogo...\n"
            "|=================================|======|\n");
 
@@ -43,16 +43,19 @@ void Carregamento(){
 }
 
 void Tela_de_Inicio(){
-    for (int loop_da_funcao = 0; loop_da_funcao < 2; loop_da_funcao++)
+    // exibe o nome do jogo piscando
+    for (int loop_da_funcao = 0; loop_da_funcao < 1; loop_da_funcao++)
     {
         system("cls");
         Sleep(500);
-        printf( " _    _      _      _   _   _   _  \n"
-                "| |  | |    | |    | | | | | | | | \n"
-                "| |__| | ___| |__  | | | | | | | | \n"
-                "|  __  |/ _ \\ '_ \\ | | | | | | | | \n"
-                "| |  | |  __/ | | || |_| |_| |_| | \n"
-                "|_|  |_|\\___|_| |_| \\___/ \\___/|_| \n");        
+        printf( " _    _                                            \n"
+                "| |  | |                                           \n"
+                "| |__| | __ _ _ ___  __ _ _ __ ___   __ _ _ ___    \n"
+                "|  __  |/ _` | '_  \\/ _` | '_ ` _ \\ / _` | '_  \\   \n"
+                "| |  | | (_| | | | | (_| | | | | | | (_| | | | |   \n"
+                "|_|  |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|   \n"
+                "                     __| |                         \n"
+                "                    |____/                         \n");
         Sleep(500);
     }
 }
@@ -61,7 +64,7 @@ int Escolher_Jogo(){
     while (1)
     {
         system("cls");
-        printf( "Jogo Hangman\n\n"
+        printf( "Escolha um modo:\n\n"
             "1 - Jogo Padrão\n"
             "2 - Jogo Personalizado\n"
             "> ");
@@ -80,15 +83,16 @@ int Escolher_Jogo(){
 
 int main(){
     system("chcp 65001");
+    Tela_de_Inicio();
 
     short int jogo = Escolher_Jogo();
 
     if (jogo == 1)
-        system("gcc hangman_classico.c -o jogo.exe");
+        system("gcc jogo\\hangman_classico.c -o jogo\\jogo.exe");
     else
-        system("gcc hangman_personalizado.c -o jogo.exe");
+        system("gcc jogo\\hangman_personalizado.c -o jogo\\jogo.exe");
 
     Carregamento();
-    Tela_de_Inicio();
-    return system("jogo.exe");
+    system("cls");
+    return system("jogo\\jogo.exe");
 }
