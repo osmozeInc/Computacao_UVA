@@ -9,28 +9,21 @@ static char palavra_usuario[12];   // palavra que o jogador deve adivinhar
 static char letras_digitadas[15];
 
 void BuscarPalavra(){
-    char palavra_aleatoria[12];
-    int contador_linha = 0;
     srand(time(NULL));
+    int contador_linha = 0;
     int linha = rand() % 20 + 1;
 
     FILE* arquivo = fopen("jogo\\palavras_por_linha.txt", "r");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return;
-    }
 
-    while (fgets(palavra_aleatoria, sizeof(palavra_aleatoria), arquivo))
+    while (fgets(palavra_secreta, sizeof(palavra_secreta), arquivo))
     {
         contador_linha++;
         if (contador_linha == linha) {
-            printf("%d-%s-", linha, palavra_aleatoria);
             break;
         }
     }
 
     fclose(arquivo);
-    strcpy(palavra_secreta, palavra_aleatoria);
 }
 
 void DefinirTamanhoPalavra(){
@@ -99,7 +92,7 @@ int main(){
     for (int i = 0; i < tentativas; tentativas--)
     {
         system("cls");
-        printf("Tentativas: %d", (tentativas));
+        printf("Tentativas: %d\t\t", (tentativas));
 
         for (int i = 0; i < strlen(letras_digitadas); i++)
         {
