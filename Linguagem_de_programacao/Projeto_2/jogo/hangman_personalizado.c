@@ -26,12 +26,18 @@ void DefinirRegrasDoJogo(){
             "1 - 10\n"
             "> ");
     scanf("%d", &tentativas);
+
+    if (tentativas < 1 || tentativas > 10)
+        tentativas = 6;
+    if (dificuldade < 1 || dificuldade > 3)
+        dificuldade = 2;
 }
 
 void BuscarPalavra(){
     srand(time(NULL));
     int contador_linha = 0;
-    int linha = rand() % (20 * dificuldade) + 1;
+    int linha = rand() % 20 + 1; // gera um numero aleatorio entre 1 e 20
+    linha += (20 * (dificuldade - 1)); // soma 0, 20 ou 40 dependendo da dificuldade
 
     FILE* arquivo = fopen("jogo\\palavras_por_linha.txt", "r");
     if (arquivo == NULL) {
